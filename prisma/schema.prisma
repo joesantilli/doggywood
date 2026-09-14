@@ -1,0 +1,333 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum UserRole {
+  USER
+  ADMIN
+}
+
+enum ContestStatus {
+  DRAFT
+  UPCOMING
+  OPEN
+  VOTING_CLOSED
+  COMPLETED
+  CANCELLED
+}
+
+enum EntryStatus {
+  DRAFT
+  SUBMITTED
+  PROCESSING
+  PENDING_REVIEW
+  APPROVED
+  LIVE
+  REJECTED
+  DISQUALIFIED
+  WITHDRAWN
+}
+
+enum MediaType {
+  VIDEO
+  POSTER
+  IMAGE
+}
+
+enum MediaStatus {
+  PENDING
+  UPLOADED
+  PROCESSING
+  READY
+  FAILED
+}
+
+enum VoteStatus {
+  VALID
+  INVALID
+  REMOVED
+  UNDER_REVIEW
+}
+
+enum NotificationChannel {
+  EMAIL
+  SMS
+}
+
+enum NotificationStatus {
+  QUEUED
+  SENT
+  FAILED
+  CANCELLED
+}
+
+enum IdentityProvider {
+  LOCAL
+  VERIFY_DOG
+}
+
+// Application profile and cached contact information.
+// User.id is Doggywood's internal identifier. Email and phone are not identity keys.
+// External providers map through AuthIdentity. Contest, vote, and session records use User.id.
+model User {
+  id              String    @id @default(cuid())
+  role            UserRole  @default(USER)
+  firstName       String?
+  lastName        String?
+  email           String?   @unique
+  emailVerifiedAt DateTime?
+  phoneE164       String?   @unique
+  phoneVerifiedAt DateTime?
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  authIdentities           AuthIdentity[]
+  sessions                 Session[]
+  dogs                     Dog[]
+  entries                  Entry[]
+  votes                    Vote[]
+  consents                 ConsentRecord[]
+  notificationPreference   NotificationPreference?
+  notifications            Notification[]
+  auditEvents              AuditEvent[]
+}
+
+model AuthIdentity {
+  id              String           @id @default(cuid())
+  userId          String
+  provider        IdentityProvider
+  providerSubject String
+  email           String?
+  phoneE164       String?
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerSubject])
+  @@index([userId])
+}
+
+model Session {
+  id         String    @id @default(cuid())
+  userId     String
+  tokenHash  String    @unique
+  expiresAt  DateTime
+  createdAt  DateTime  @default(now())
+  lastSeenAt DateTime?
+  ipAddress  String?
+  userAgent  String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([expiresAt])
+}
+
+model Dog {
+  id            String   @id @default(cuid())
+  ownerUserId   String
+  name          String
+  // Optional link to a future Verify.Dog master dog profile. Unpopulated in Phase 01.
+  externalDogId String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  owner   User    @relation(fields: [ownerUserId], references: [id])
+  entries Entry[]
+
+  @@index([ownerUserId])
+}
+
+model Contest {
+  id                String        @id @default(cuid())
+  name              String
+  slug              String        @unique
+  status            ContestStatus @default(DRAFT)
+  startsAt          DateTime
+  entryClosesAt     DateTime
+  votingClosesAt    DateTime
+  winnerAnnouncedAt DateTime?
+  prizeAmountCents  Int           @default(50000)
+  currency          String        @default("USD")
+  rulesVersion      String
+  createdAt         DateTime     @default(now())
+  updatedAt         DateTime     @updatedAt
+
+  entries Entry[]
+  votes   Vote[]
+
+  @@index([status])
+  @@index([startsAt])
+  @@index([entryClosesAt])
+  @@index([votingClosesAt])
+}
+
+model MediaAsset {
+  id               String      @id @default(cuid())
+  type             MediaType
+  status           MediaStatus @default(PENDING)
+  storageProvider  String?
+  storageKey       String?
+  originalFileName String?
+  mimeType         String?
+  sizeBytes        BigInt?
+  durationSeconds  Float?
+  width            Int?
+  height           Int?
+  createdAt        DateTime    @default(now())
+  updatedAt        DateTime    @updatedAt
+
+  videoEntry  Entry? @relation("EntryVideo")
+  posterEntry Entry? @relation("EntryPoster")
+}
+
+model Entry {
+  id              String      @id @default(cuid())
+  contestId       String
+  dogId           String
+  userId          String
+  slug            String      @unique
+  caption         String?
+  status          EntryStatus @default(DRAFT)
+  videoAssetId    String?     @unique
+  posterAssetId   String?     @unique
+  submittedAt     DateTime?
+  publishedAt     DateTime?
+  rejectedAt      DateTime?
+  rejectionReason String?
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
+
+  contest     Contest     @relation(fields: [contestId], references: [id])
+  dog         Dog         @relation(fields: [dogId], references: [id])
+  user        User        @relation(fields: [userId], references: [id])
+  videoAsset  MediaAsset? @relation("EntryVideo", fields: [videoAssetId], references: [id])
+  posterAsset MediaAsset? @relation("EntryPoster", fields: [posterAssetId], references: [id])
+  votes       Vote[]
+  consents    ConsentRecord[]
+
+  @@unique([contestId, dogId])
+  @@index([contestId])
+  @@index([userId])
+  @@index([dogId])
+  @@index([status])
+  @@index([submittedAt])
+}
+
+model Vote {
+  id          String     @id @default(cuid())
+  contestId   String
+  entryId     String
+  voterUserId String
+  status      VoteStatus @default(VALID)
+  ipAddress   String?
+  userAgent   String?
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+
+  contest   Contest @relation(fields: [contestId], references: [id])
+  entry     Entry   @relation(fields: [entryId], references: [id])
+  voterUser User    @relation(fields: [voterUserId], references: [id])
+
+  @@unique([entryId, voterUserId])
+  @@index([contestId])
+  @@index([entryId])
+  @@index([voterUserId])
+  @@index([status])
+}
+
+model ConsentRecord {
+  id                    String   @id @default(cuid())
+  userId                String
+  entryId               String?
+  officialRulesVersion  String?
+  termsVersion          String?
+  privacyVersion        String?
+  smsConsentVersion     String?
+  acceptedAt            DateTime @default(now())
+  ipAddress             String?
+  userAgent             String?
+  metadata              Json?
+
+  user  User   @relation(fields: [userId], references: [id])
+  entry Entry? @relation(fields: [entryId], references: [id])
+
+  @@index([userId])
+  @@index([entryId])
+}
+
+model NotificationPreference {
+  id                      String   @id @default(cuid())
+  userId                  String   @unique
+  emailEnabled            Boolean  @default(true)
+  smsEnabled              Boolean  @default(false)
+  contestUpdatesEnabled   Boolean  @default(true)
+  marketingEmailEnabled   Boolean  @default(false)
+  marketingSmsEnabled     Boolean  @default(false)
+  createdAt               DateTime @default(now())
+  updatedAt               DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id])
+}
+
+model Notification {
+  id                String              @id @default(cuid())
+  userId            String?
+  channel           NotificationChannel
+  status            NotificationStatus  @default(QUEUED)
+  templateKey       String
+  destination       String
+  providerMessageId String?
+  payload           Json?
+  errorMessage      String?
+  scheduledAt       DateTime?
+  sentAt            DateTime?
+  createdAt         DateTime            @default(now())
+  updatedAt         DateTime            @updatedAt
+
+  user User? @relation(fields: [userId], references: [id])
+
+  @@index([userId])
+  @@index([status])
+  @@index([channel])
+  @@index([scheduledAt])
+}
+
+model AuditEvent {
+  id          String   @id @default(cuid())
+  actorUserId String?
+  action      String
+  entityType  String
+  entityId    String?
+  metadata    Json?
+  ipAddress   String?
+  createdAt   DateTime @default(now())
+
+  actor User? @relation(fields: [actorUserId], references: [id])
+
+  @@index([actorUserId])
+  @@index([entityType])
+  @@index([entityId])
+  @@index([createdAt])
+}
+
+model ContactInquiry {
+  id        String   @id @default(cuid())
+  name      String
+  phone     String
+  email     String
+  subject   String
+  message   String
+  createdAt DateTime @default(now())
+  ipAddress String?
+  userAgent String?
+
+  @@index([createdAt])
+  @@index([email])
+}

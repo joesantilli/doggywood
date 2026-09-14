@@ -1,0 +1,82 @@
+Build the Doggywood landing page to match the supplied reference image as closely as possible at desktop width. Do not redesign it. Do not improve it. Do not invent new sections, colors, copy, icons, or imagery. Treat the reference image as the visual source of truth and the four supplied brand images as immutable production assets.
+
+Use the existing project stack and existing global styles where possible. Inspect the project before editing so you do not create duplicate style systems or break unrelated pages.
+
+Use these supplied assets exactly as they are:
+
+doggywood_logo.webp
+verify_dog_logo.webp
+dog_tag.webp
+qr_tag.webp
+
+Do not redraw, regenerate, recolor, crop, stretch, restyle, trace, approximate, or replace any of those assets. Preserve their native proportions.
+
+The supplied dog_tag.webp is the only dog image allowed in the hero. The entire dog and the entire yellow QR tag must remain inside the hero section. Nothing from the dog image may cross the hero top edge or hero bottom edge. Leave visible breathing room above the dog head and below the bottom of the yellow tag. The yellow tag must be completely visible. The dog should be roughly eighty percent of the size used in the prior version.
+
+The hero background should show bright Hollywood hills with palms and a large DOGGYWOOD hillside sign on the right. Keep the hero bright. Do not use any dark hero treatment. Do not use coral. Do not use green. Do not use brown gold. The primary brand accent is the supplied Doggywood yellow. Use black, white, warm ivory, very light neutral gray, and a restrained cool secondary accent such as soft sky blue only where a secondary color is necessary.
+
+Do not use cursive or handwritten script anywhere. Do not use arrows inside CTA buttons. Do not use a registration form in the hero. No headline on the page may exceed 54 pixels on desktop.
+
+Build only the actual website shown in the right side of the reference. Ignore the content outline panel shown to the left of the website in the earlier presentation mockup.
+
+Page structure from top to bottom:
+
+1. Header with exact Doggywood logo at left, simple navigation in the center, Back to Verify.Dog button, and yellow Enter the Contest button at right.
+
+2. Hero with left aligned headline, short supporting copy, yellow Enter the Contest button, white View Rules button, bright Hollywood hills background, larger DOGGYWOOD hillside sign, and exact dog_tag.webp on the right. The dog must be fully contained within the hero with comfortable padding on every side.
+
+3. Contest highlights as one restrained horizontal information band. Do not make it look like four separate childish cards. Use subtle vertical separators, generous white space, strong typography, and simple icons. Include 500 dollar monthly prize, 30 second vertical video, Verify.Dog customers only, and real dogs real people.
+
+4. Entry explanation presented as a visually distinct editorial section, not another row of matching boxes. Show Film, Upload, Share, and Win using four clean stages with strong spacing and minimal icon treatment. Do not use numbered circles. Do not use a 1 2 3 4 visual motif. This section must look clearly different from the contest highlights above it.
+
+5. First contest launch section. This is the first ever Doggywood contest. There are no previous winners, no recent winners, and no contestant gallery yet. Use a larger editorial block that explains that Verify.Dog customers can be among the first entries and help launch the contest. Do not create another row of three or four matching cards.
+
+6. Community section using the exact qr_tag.webp asset and messaging around the existing Verify.Dog community and a bigger stage for their dogs. Make this section visually different from every section above it. Use an asymmetrical layout with image on one side and copy on the other.
+
+7. Rules snapshot as a concise low profile section. Include eligibility for current Verify.Dog customers, maximum 30 second vertical video, original content, one entry per dog per month, and one 500 dollar monthly winner. Keep it compact and do not repeat the same card pattern used elsewhere.
+
+8. Final CTA section using the exact dog_tag.webp image at a smaller scale. The dog and complete yellow QR tag must remain fully inside the yellow CTA panel with padding above and below. Nothing may overlap the next section. Use one Enter the Contest button with no arrow.
+
+9. FAQ using simple accordion rows.
+
+10. Footer with exact Doggywood logo and exact Verify.Dog logo, contest links, privacy, terms, contact, and the relationship to Verify.Dog.
+
+Visual rules:
+
+Use a clean professional consumer brand aesthetic. The page should feel polished, premium, lively, and trustworthy rather than childish. Avoid repeated card grids. Every major section must have a different composition and visual rhythm. Use whitespace, scale, image placement, typography, borders, subtle backgrounds, and alignment to create distinction instead of repeating icon boxes.
+
+Use the reference screenshot for spacing, proportions, relative section heights, logo size, button size, content width, alignment, hero composition, and overall density. Match the reference before adding responsive behavior.
+
+Desktop target:
+
+Use the supplied doggywood_reference_content.png as the visual comparison reference. First make the desktop layout match this image. Keep the page centered with the same visual proportions. Then make the layout responsive for tablet and mobile without changing the desktop composition.
+
+Implementation process:
+
+First inspect all existing Doggywood page files, components, styles, fonts, and assets. Reuse what is appropriate. Then implement the page. Then run the site locally and capture a screenshot at the same aspect ratio as doggywood_reference_content.png. Compare your screenshot directly against the reference. Correct spacing, section heights, font sizing, image scale, image position, button dimensions, border radii, padding, and alignment until the visual difference is minimal.
+
+Do not stop after the first implementation pass. Perform at least three visual comparison and correction passes. On each pass, change only measurable differences from the reference. Do not introduce personal design judgment after implementation begins.
+
+Before declaring complete, verify all of the following:
+
+The official logos are exact assets.
+The hero uses the exact official dog asset.
+The full yellow QR tag is visible in the hero.
+The hero dog does not cross the hero top or bottom edge.
+The hero dog has visible padding around it.
+The DOGGYWOOD hillside sign is large and clearly visible.
+There is no coral anywhere.
+There is no green secondary palette.
+There is no dark hero.
+There is no cursive script.
+There are no arrows in CTA buttons.
+There is no hero registration form.
+There are no previous winner claims.
+There is no recent winners section.
+There are no numbered 1 2 3 4 circles.
+No headline exceeds 54 pixels on desktop.
+The contest highlights and entry explanation do not look like matching card rows.
+The final CTA dog and full yellow QR tag remain completely inside the CTA section.
+No section overlaps the section below it.
+
+Do not modify any other page in the project.

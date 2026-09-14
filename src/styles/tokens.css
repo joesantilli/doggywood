@@ -1,0 +1,859 @@
+/* Approved Doggywood design tokens from DESIGN_SYSTEM.md. */
+
+:root {
+  --midnight: #111111;
+  --warm-white: #fffdf8;
+  --champagne: #f2e6c9;
+  --doggywood-gold: #c9a227;
+  --red-carpet: #a51c30;
+  --red-carpet-hover: #8c1728;
+  --soft-gray: #f4f4f4;
+  --text-gray: #5d5d5d;
+  --success: #237a4b;
+  --warning: #a56a00;
+  --error: #a52828;
+  --focus-on-dark: #c9a227;
+  --video-canvas: #1a1a1a;
+  --border-subtle: #e6dcc0;
+
+  --space-4: 4px;
+  --space-8: 8px;
+  --space-12: 12px;
+  --space-16: 16px;
+  --space-20: 20px;
+  --space-24: 24px;
+  --space-32: 32px;
+  --space-40: 40px;
+  --space-48: 48px;
+  --space-64: 64px;
+  --space-80: 80px;
+  --space-96: 96px;
+  --space-120: 120px;
+
+  --radius-small-value: 8px;
+  --radius-medium-value: 14px;
+  --radius-large-value: 22px;
+  --radius-pill-value: 999px;
+
+  --launch-navy: #1a1a1a;
+  --launch-muted: #4a4a4a;
+  --launch-gold: #f0c014;
+  --launch-gold-hover: #e0b10c;
+  --launch-page: #fffcf6;
+  --launch-cream: #fff4cc;
+  --launch-line: #ece6d6;
+  --launch-blue: #8eb4d4;
+  --launch-accent: #1343f0;
+  --launch-mist: #e7edf4;
+  --focus: #1a1a1a;
+
+  --container-content: 1200px;
+  --container-reading: 760px;
+
+  --page-padding-mobile: 20px;
+  --page-padding-tablet: 32px;
+  --page-padding-desktop: 48px;
+}
+
+@theme inline {
+  --color-midnight: var(--midnight);
+  --color-warm-white: var(--warm-white);
+  --color-champagne: var(--champagne);
+  --color-doggywood-gold: var(--doggywood-gold);
+  --color-red-carpet: var(--red-carpet);
+  --color-red-carpet-hover: var(--red-carpet-hover);
+  --color-soft-gray: var(--soft-gray);
+  --color-text-gray: var(--text-gray);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-error: var(--error);
+  --color-focus: var(--focus);
+  --color-video-canvas: var(--video-canvas);
+  --color-border-subtle: var(--border-subtle);
+  --color-launch-navy: var(--launch-navy);
+  --color-launch-muted: var(--launch-muted);
+  --color-launch-gold: var(--launch-gold);
+  --color-launch-gold-hover: var(--launch-gold-hover);
+  --color-launch-page: var(--launch-page);
+  --color-launch-cream: var(--launch-cream);
+  --color-launch-line: var(--launch-line);
+  --color-launch-blue: var(--launch-blue);
+  --color-launch-accent: var(--launch-accent);
+  --color-launch-mist: var(--launch-mist);
+
+  --radius-small: var(--radius-small-value);
+  --radius-medium: var(--radius-medium-value);
+  --radius-large: var(--radius-large-value);
+  --radius-pill: var(--radius-pill-value);
+
+  --max-width-content: var(--container-content);
+  --max-width-reading: var(--container-reading);
+
+  --spacing-space-4: var(--space-4);
+  --spacing-space-8: var(--space-8);
+  --spacing-space-12: var(--space-12);
+  --spacing-space-16: var(--space-16);
+  --spacing-space-20: var(--space-20);
+  --spacing-space-24: var(--space-24);
+  --spacing-space-32: var(--space-32);
+  --spacing-space-40: var(--space-40);
+  --spacing-space-48: var(--space-48);
+  --spacing-space-64: var(--space-64);
+  --spacing-space-80: var(--space-80);
+  --spacing-space-96: var(--space-96);
+  --spacing-space-120: var(--space-120);
+}
+
+.text-display {
+  font-size: 36px;
+  line-height: 1.02;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+.text-h1 {
+  font-size: 30px;
+  line-height: 1.15;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.text-h2 {
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.text-h3 {
+  font-size: 21px;
+  line-height: 28px;
+  font-weight: 650;
+}
+
+.text-hero-lede {
+  font-size: 16px;
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+.text-body-large {
+  font-size: 18px;
+  line-height: 28px;
+  font-weight: 400;
+}
+
+.text-body {
+  font-size: 16px;
+  line-height: 26px;
+  font-weight: 400;
+}
+
+.text-caption {
+  font-size: 14px;
+  line-height: 22px;
+  font-weight: 500;
+}
+
+.text-button {
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 650;
+}
+
+.text-label {
+  font-size: 13px;
+  line-height: 18px;
+  font-weight: 650;
+}
+
+.text-eyebrow {
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+}
+
+.text-trust {
+  font-size: 16px;
+  line-height: 22px;
+  font-weight: 650;
+}
+
+@media (min-width: 1024px) {
+  .text-display {
+    font-size: 54px;
+    line-height: 0.98;
+  }
+
+  .text-h1 {
+    font-size: 36px;
+    line-height: 1.15;
+  }
+
+  .text-h2 {
+    font-size: 28px;
+    line-height: 36px;
+  }
+
+  .text-hero-lede {
+    font-size: 18px;
+    line-height: 1.5;
+  }
+}
+
+.page-shell {
+  padding-inline: 20px;
+}
+
+@media (min-width: 640px) {
+  .page-shell {
+    padding-inline: 32px;
+  }
+}
+
+/* =========================================================
+   DOGGYWOOD HEADER
+   ========================================================= */
+
+.dw-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  width: 100%;
+  height: 72px;
+  background: #ffffff;
+}
+
+.dw-header-inner {
+  width: 100%;
+  max-width: 1440px;
+  height: 72px;
+  margin: 0 auto;
+  padding: 0 48px;
+
+  display: grid;
+  grid-template-columns: 250px 1fr auto;
+  align-items: center;
+}
+
+.dw-header-logo {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: fit-content;
+  height: 100%;
+}
+
+.dw-header-logo img {
+  display: block;
+  width: 170px;
+  height: auto;
+  object-fit: contain;
+}
+
+.dw-header-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 34px;
+  white-space: nowrap;
+}
+
+.dw-header-nav a {
+  color: var(--launch-navy);
+  font-family: Inter, sans-serif;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.dw-header-nav a:hover {
+  opacity: 0.72;
+}
+
+.dw-header-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 14px;
+}
+
+.dw-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  font-family: Inter, sans-serif;
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 700;
+
+  text-decoration: none;
+  white-space: nowrap;
+
+  border-radius: 10px;
+
+  transition:
+    background-color 150ms ease,
+    border-color 150ms ease,
+    opacity 150ms ease;
+}
+
+.dw-btn-header {
+  height: 44px;
+  padding: 0 20px;
+}
+
+.dw-btn-hero {
+  min-width: 205px;
+  height: 52px;
+  padding: 0 26px;
+}
+
+.dw-btn-gold {
+  background: var(--launch-gold);
+  color: var(--launch-navy);
+  border: 1px solid var(--launch-gold);
+}
+
+.dw-btn-gold:hover {
+  background: var(--launch-gold-hover);
+  border-color: var(--launch-gold-hover);
+}
+
+.dw-btn-outline {
+  background: #ffffff;
+  color: var(--launch-navy);
+  border: 1px solid var(--launch-navy);
+}
+
+.dw-btn-outline:hover {
+  background: #fafafa;
+}
+
+/* =========================================================
+   DOGGYWOOD HERO
+   ========================================================= */
+
+.dw-hero {
+  position: relative;
+  width: 100%;
+  min-height: 430px;
+  overflow: hidden;
+  background: #ffffff;
+}
+
+.dw-hero-photo {
+  display: none;
+}
+
+.dw-hero-hills {
+  position: absolute;
+  inset: 0;
+  background-image: url("/brand/doggywood-hills.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 94% 100%;
+}
+
+.dw-hero-fade {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(255, 255, 255, 1) 24%,
+    rgba(255, 255, 255, 0.98) 32%,
+    rgba(255, 255, 255, 0.92) 38%,
+    rgba(255, 255, 255, 0.70) 43%,
+    rgba(255, 255, 255, 0.38) 47%,
+    rgba(255, 255, 255, 0.12) 50%,
+    rgba(255, 255, 255, 0) 53%
+  );
+}
+
+.dw-hero-inner {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 42px 48px var(--space-32);
+}
+
+.dw-hero-copy {
+  position: relative;
+  z-index: 4;
+  width: 430px;
+}
+
+.dw-eyebrow,
+.dw-hero-eyebrow {
+  display: inline-block;
+  width: fit-content;
+  padding: 5px 12px;
+
+  border: 1.5px solid var(--launch-accent);
+  border-radius: 999px;
+  background: #eef2ff;
+  color: var(--launch-accent);
+
+  font-family: Inter, sans-serif;
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 750;
+
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.dw-hero-eyebrow {
+  margin: 0 0 13px;
+}
+
+.dw-hero-headline {
+  margin: 0;
+
+  color: var(--launch-navy);
+
+  font-family: Inter, sans-serif;
+  font-size: 52px;
+  line-height: 1.29;
+  font-weight: 800;
+  letter-spacing: -0.045em;
+}
+
+.dw-hero-headline-accent {
+  color: #f0c013;
+}
+
+.dw-hero-headline span {
+  display: block;
+  white-space: nowrap;
+}
+
+.dw-hero-headline span.dw-hero-headline-accent {
+  display: inline-block;
+}
+
+.dw-hero-lede {
+  width: 100%;
+  max-width: 520px;
+  margin: 22px 0 0;
+
+  color: var(--launch-navy);
+
+  font-family: Inter, sans-serif;
+  font-size: 18px;
+  line-height: 1.42;
+  font-weight: 400;
+}
+
+.dw-hero-copy .dw-hero-lede {
+  margin-top: 16px;
+}
+
+.dw-hero-actions {
+  display: flex;
+  align-items: center;
+
+  width: 100%;
+  margin-top: 24px;
+}
+
+.dw-hero-copy .dw-hero-actions {
+  margin-top: 18px;
+}
+
+.dw-hero-copy .dw-btn-hero {
+  width: 100%;
+  min-width: 0;
+}
+
+.dw-hero-dog {
+  position: absolute;
+  z-index: 3;
+  left: 58%;
+  bottom: 0;
+  height: 320px;
+  width: auto;
+  max-width: none;
+  object-fit: contain;
+  object-position: center bottom;
+  transform: translateX(-50%);
+  pointer-events: none;
+  user-select: none;
+}
+
+.dw-hero-desktop {
+  display: contents;
+}
+
+.dw-hero-mobile {
+  display: none;
+}
+
+/* =========================================================
+   TABLET AND MOBILE
+   ========================================================= */
+
+@media (max-width: 1150px) {
+  .dw-header-inner {
+    padding-left: 32px;
+    padding-right: 32px;
+    grid-template-columns: 210px 1fr auto;
+  }
+
+  .dw-header-logo img {
+    width: 148px;
+  }
+
+  .dw-header-nav {
+    gap: 22px;
+  }
+
+  .dw-hero-inner {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+
+  .dw-hero-dog {
+    left: 56%;
+    bottom: 0;
+    height: 320px;
+  }
+
+  .dw-hero-headline {
+    font-size: 48px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .dw-header {
+    height: 72px;
+    background: #ffffff;
+    border: 0;
+    box-shadow: none;
+  }
+
+  .dw-header-inner {
+    height: 72px;
+    max-width: 1440px;
+    padding: 0 48px;
+    grid-template-columns: 250px 1fr auto;
+  }
+
+  .dw-header-logo img {
+    width: 170px;
+  }
+
+  .dw-header-nav {
+    gap: 34px;
+  }
+
+  .dw-header-nav a {
+    color: #1a1a1a;
+    font-family: Inter, sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+  /* DOGGYWOOD APPROVED HERO. DO NOT MODIFY WITHOUT EXPLICIT PRODUCT OWNER INSTRUCTION. */
+  .dw-hero {
+    position: relative;
+    width: 100%;
+    height: 520px;
+    overflow: hidden;
+    background: #ffffff;
+  }
+
+  .dw-hero-desktop {
+    display: grid;
+    grid-template-columns: 46% 54%;
+    width: 100%;
+    height: 520px;
+    min-width: 0;
+  }
+
+  .dw-hero-photo-viewport {
+    grid-column: 2;
+    grid-row: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    width: 100%;
+    height: 520px;
+    overflow: hidden;
+    padding-top: 22px;
+    padding-right: 26px;
+    padding-bottom: 22px;
+    padding-left: 26px;
+  }
+
+  .dw-hero-photo-card {
+    position: relative;
+    width: 100%;
+    height: 476px;
+    overflow: hidden;
+    border-radius: 26px;
+    background: #ffffff;
+  }
+
+  .dw-hero-photo {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 46%;
+  }
+
+  .dw-hero-dog {
+    display: none !important;
+  }
+
+  .dw-hero-hills {
+    display: none !important;
+  }
+
+  .dw-hero-fade {
+    display: none !important;
+  }
+
+  .dw-hero-inner {
+    grid-column: 1;
+    grid-row: 1;
+    position: relative;
+    z-index: 5;
+    box-sizing: border-box;
+    width: 100%;
+    min-width: 0;
+    height: 520px;
+    margin: 0;
+    padding: 0 40px 0 30px;
+  }
+
+  .dw-hero-copy {
+    position: relative;
+    z-index: 5;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 700px;
+    min-width: 0;
+    padding-top: 36px;
+  }
+
+  .dw-hero-copy .dw-hero-eyebrow {
+    margin: 0 0 24px;
+  }
+
+  .dw-hero-headline {
+    margin: 0 0 32px;
+    color: #1a1a1a;
+    font-family: Inter, sans-serif;
+    font-size: 52px;
+    font-weight: 800;
+    line-height: 1.08;
+    letter-spacing: -0.045em;
+  }
+
+  .dw-hero-headline-accent {
+    color: #f0c014;
+  }
+
+  .dw-hero-copy .dw-hero-lede,
+  .dw-hero-lede {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 680px;
+    margin-top: 0;
+    margin-bottom: 0;
+    color: #1a1a1a;
+    font-size: 18px;
+    line-height: 1.45;
+    white-space: normal;
+    overflow: visible;
+    overflow-wrap: normal;
+    word-break: normal;
+  }
+
+  .dw-hero-copy .dw-hero-actions {
+    position: static;
+    left: auto;
+    bottom: auto;
+    margin-top: 32px;
+    margin-bottom: 0;
+  }
+
+  .dw-hero-copy .dw-btn-hero {
+    width: 320px;
+    min-width: 320px;
+    height: 52px;
+    padding: 0 20px;
+    border-radius: 10px;
+    background: #f0c014;
+    color: #1a1a1a;
+  }
+}
+
+@media (max-width: 1023px) {
+  .dw-header {
+    height: 64px;
+  }
+
+  .dw-header-inner {
+    height: 64px;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 24px;
+  }
+
+  .dw-header-logo img {
+    width: 136px;
+  }
+
+  .dw-header-nav,
+  .dw-header-actions {
+    display: none;
+  }
+
+  body:has(.dw-hero-mobile) .dw-header {
+    display: none;
+  }
+
+  .dw-hero {
+    height: auto;
+    min-height: 0;
+    overflow: visible;
+    background: #ffffff;
+  }
+
+  .dw-hero-desktop {
+    display: none;
+  }
+
+  .dw-hero-mobile {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    max-width: 1440px;
+    height: auto;
+    margin: 0 auto;
+    padding: 28px 24px var(--space-32);
+    position: static;
+    overflow: visible;
+  }
+
+  .dw-hero-mobile-logo {
+    display: block;
+    width: min(280px, 82%);
+    height: auto;
+    margin: 0 auto 40px;
+    object-fit: contain;
+  }
+
+  .dw-hero-mobile .dw-hero-eyebrow {
+    align-self: center;
+    width: fit-content;
+    margin: 0 auto 18px;
+    padding: 6px 14px;
+    font-size: 13px;
+    line-height: 16px;
+    font-weight: 750;
+    letter-spacing: 0.12em;
+    text-align: center;
+  }
+
+  .dw-hero-mobile .dw-hero-headline {
+    margin: 0 0 28px;
+    font-size: 44px;
+    line-height: 1.29;
+    font-weight: 800;
+    color: #111111;
+    text-align: center;
+  }
+
+  .dw-hero-mobile-image {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin: 0 0 20px;
+    border-radius: 22px;
+    object-fit: contain;
+  }
+
+  .dw-hero-mobile .dw-hero-prize {
+    margin: 0 0 16px;
+    font-family: Inter, sans-serif;
+    font-size: 30px;
+    line-height: 1.2;
+    font-weight: 800;
+    letter-spacing: -0.045em;
+    color: var(--launch-accent);
+    text-align: center;
+  }
+
+  .dw-hero-mobile .dw-hero-lede {
+    width: 100%;
+    max-width: none;
+    margin: 0 0 28px;
+    font-size: 20px;
+    line-height: 1.45;
+    font-weight: 400;
+    color: #111111;
+    text-align: left;
+  }
+
+  .dw-hero-mobile .dw-hero-actions {
+    display: block;
+    margin: 0;
+    padding-bottom: 0;
+  }
+
+  .dw-hero-mobile .dw-btn-hero {
+    width: 100%;
+    min-width: 0;
+    height: 58px;
+    padding: 0 26px;
+    border-radius: 16px;
+    font-size: 18px;
+    line-height: 22px;
+    color: #111111;
+  }
+}
+
+@media (max-width: 640px) {
+  .dw-header-inner {
+    padding: 0 18px;
+  }
+
+  .dw-header-logo img {
+    width: 128px;
+  }
+
+  .dw-hero-mobile {
+    padding: 24px 18px var(--space-32);
+  }
+
+  .dw-hero-mobile-logo {
+    width: min(240px, 86%);
+  }
+
+  .dw-hero-mobile .dw-hero-eyebrow {
+    font-size: 12px;
+  }
+
+  .dw-hero-mobile .dw-hero-headline {
+    font-size: 38px;
+    line-height: 1.29;
+  }
+
+  .dw-hero-mobile .dw-hero-lede {
+    font-size: 18px;
+    line-height: 1.45;
+  }
+}

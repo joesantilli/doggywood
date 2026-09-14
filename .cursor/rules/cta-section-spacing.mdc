@@ -1,0 +1,15 @@
+---
+description: Keep 32px space below every section CTA
+globs: src/**/*.{tsx,jsx,css}
+alwaysApply: true
+---
+
+# CTA to section bottom
+
+After a section CTA, keep **32px** (`--space-32`) of space before the section’s bottom edge or the next section.
+
+Do not let a button sit flush on the following section.
+
+Match the gold closing CTA (`py-space-32`) and the mobile hero (`padding-bottom: 32px`).
+
+Do not steal this space by tightening headline, image, or overlay composition.

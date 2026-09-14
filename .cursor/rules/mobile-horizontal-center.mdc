@@ -1,0 +1,39 @@
+---
+description: Mobile public content is horizontally centered
+globs: src/**/*.{tsx,jsx,css}
+alwaysApply: true
+---
+
+# Mobile horizontal centering
+
+On viewports below `lg` (max-width 1023px), public marketing content is **horizontally centered**. Do not left-align stacked mobile blocks.
+
+Center:
+
+- Section headlines and eyebrows
+- Supporting copy
+- Icons
+- Card contents (step labels, titles, body)
+- CTAs
+
+Desktop (`lg` and up) may stay left-aligned or side-by-side. Do not change desktop alignment to satisfy this rule.
+
+```tsx
+// ✅ GOOD — mobile centered, desktop can be left
+<h2 className="text-center lg:text-left">Enter. Share. Win.</h2>
+<div className="flex flex-col items-center text-center lg:items-start lg:text-left">
+  <img alt="" src="..." />
+  <h3>UPLOAD</h3>
+  <p>Upload a 30 second vertical video of your dog.</p>
+</div>
+```
+
+```tsx
+// ❌ BAD — mobile left-aligned marketing content
+<h2 className="text-left">Enter. Share. Win.</h2>
+<div className="items-start text-left">
+  <h3>UPLOAD</h3>
+</div>
+```
+
+Keep left-aligned on mobile only for form fields, FAQ accordion questions/answers, and legal document body copy (Official Rules, Terms, Privacy).

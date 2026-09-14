@@ -1,0 +1,60 @@
+---
+description: Freeze the approved desktop header, hero, and trust strip. Future work starts below the trust strip.
+alwaysApply: true
+---
+
+# DOGGYWOOD HERO FREEZE
+
+The current rendered desktop hero is final and is the source of truth.
+
+It overrides every earlier hero proportion instruction, including two-thirds / one-third.
+
+Do not redesign, rebalance, resize, or reinterpret it.
+
+Do not apply earlier hero specifications that conflict with the current implementation.
+
+## Frozen zone
+
+Everything from the top of the header through the bottom of the trust strip is frozen.
+
+Future Phase 2 work begins below the trust strip.
+
+Protected unless the prompt specifically names the hero and explicitly instructs a change:
+
+- `.dw-hero`
+- `.dw-hero-desktop`
+- `.dw-hero-photo-viewport`
+- `.dw-hero-photo-card`
+- `.dw-hero-photo`
+- `.dw-hero-inner`
+- `.dw-hero-copy`
+- `LaunchHeader`
+- the trust strip immediately below the hero (`$500 EVERY MONTH` / `SHOW OFF YOUR PUP` / `MOST UPVOTES WINS`)
+
+If a global style change would affect the hero, scope the new styles so the approved hero remains visually identical.
+
+## Do not change
+
+Header: logo asset `/brand/doggywood-logo.webp`, logo size, nav placement/labels, both right buttons, spacing, height, typography, button dimensions. No arrows.
+
+Hero grid: keep the current 46% / 54% columns. Do not change to two-thirds / one-third or any other ratio.
+
+Hero height: keep `520px`. No `min-height` viewport sizing. Do not make it taller or shorter.
+
+Left column: badge `WIN $500 THIS MONTH!`; headline lines `Your Dog’s Shot` / `at Fame Starts` / `Here.`; current font, size, weight, line-height, black treatment, yellow `Starts` and `Here.`; current body copy; CTA `ENTER THIS MONTH'S CONTEST` at current width, height, color, and placement. No arrow.
+
+Right image: `/brand/doggywood-mobile-hero.webp` in the rounded feature card. Keep current crop, dog size/position, tag, hills, palms, sky, sign, radius, frame, `object-fit`, and `object-position: 50% 46%`. Do not replace, regenerate, or rebuild from separate assets. No fade, mask, overlay, blur, opacity, or gradient.
+
+Spacing: do not alter gaps between badge/headline, headline/body, body/CTA, left column/right image, or hero/trust strip.
+
+Trust strip: keep the three items, icons, icon size, typography, dividers, cream background, height, and spacing. No fourth item.
+
+Mobile hero remains independently locked.
+
+Exact supplied Doggywood and Verify.Dog logo assets are mandatory. Never recreate, approximate, generate, or replace them with styled text.
+
+## Desktop check
+
+Verify at 1920, 1600, 1440, and 1024. Do not modify the hero just because text wraps differently at narrower desktop widths unless there is an actual overflow defect.
+
+Before declaring any later phase complete, confirm header, logo, hero copy, hero dimensions, image, image crop, CTA, and trust strip are unchanged. If any of those changed, restore them first.

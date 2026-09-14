@@ -1,0 +1,40 @@
+---
+description: Mobile page presentation order is Headline, image, body/text, then CTA
+globs: src/**/*.{tsx,jsx,css}
+alwaysApply: true
+---
+
+# Mobile presentation order
+
+On viewports below `lg` (max-width 1023px), stacked page and section content must appear in this order:
+
+1. Headline (eyebrow may sit immediately above it)
+2. Image
+3. Body / text content
+4. CTA button
+
+Skip a slot if that block does not exist. Do not add filler.
+
+Desktop layouts may keep side-by-side or overlay compositions. Do not change desktop order to satisfy this rule.
+
+Source order should match the mobile visual order so reading order stays correct. Use CSS grid placement (`lg:col-start-*`) to rearrange for desktop. Do not use `order` as the only mobile solution when the DOM can be structured correctly.
+
+```tsx
+// ✅ GOOD — mobile stacks headline → image → body → CTA
+<div className="grid gap-6 lg:grid-cols-2">
+  <h2 className="lg:col-start-2 lg:row-start-1">Headline</h2>
+  <img className="lg:col-start-1 lg:row-span-3" alt="" src="..." />
+  <p className="lg:col-start-2 lg:row-start-2">Body copy.</p>
+  <a className="lg:col-start-2 lg:row-start-3" href="/enter">Enter the Contest</a>
+</div>
+
+// ❌ BAD — mobile shows image or CTA before the headline
+<div>
+  <img alt="" src="..." />
+  <h2>Headline</h2>
+  <a href="/enter">Enter the Contest</a>
+  <p>Body copy.</p>
+</div>
+```
+
+This applies to every public page and marketing section, including the homepage hero, about, and closing CTA. Icon-only list items (for example How to Enter steps) are not this pattern.
