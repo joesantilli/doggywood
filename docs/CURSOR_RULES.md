@@ -148,9 +148,13 @@ Annual championship voting starts from zero.
 
 The current public `/` page is Launch State.
 
+Doggywood is a public monthly dog video contest. Verify.Dog customer status is not required. A Verify.Dog review is not required.
+
 Do not display fake videos, contestants, ratings, votes, leaderboards, profiles, or trending activity.
 
 Follow LAUNCH_LANDING_PAGE_SPEC.md and the Launch State wireframes.
+
+The implemented September approved desktop hero, header, and trust strip are frozen. Phase 02 work begins below the trust strip.
 
 Future Social State homepage wireframes are later work.
 

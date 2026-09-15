@@ -4,16 +4,15 @@ import { launchCopy } from "@/features/homepage/launchCopy";
 
 const footerLinks = [
   { href: "/rules", label: "Official Rules" },
-  { href: "/terms", label: "Terms" },
-  { href: "/privacy", label: "Privacy" },
-  { href: "/#faq", label: "FAQ" },
+  { href: "/privacy", label: "Privacy Policy" },
+  { href: "/terms", label: "Terms of Service" },
   { href: "/contact", label: "Contact" },
   { href: "/#about", label: "About" },
 ] as const;
 
 export function LaunchFooter() {
   return (
-    <footer className="mt-auto border-t border-launch-line bg-white" id="about">
+    <footer className="mt-auto border-t border-launch-line bg-white">
       <div className="dw-below">
         <div className="flex flex-col items-center gap-6 py-8 text-center lg:flex-row lg:items-center lg:justify-between lg:py-10 lg:text-left">
           <Link aria-label="Doggywood home" href="/">

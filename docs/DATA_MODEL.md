@@ -476,7 +476,7 @@ For Doggywood Dog of the Year, the contest is annual, voting starts from zero, a
 
 Purpose:
 
-Joins a dog, video, and optional required review to one official contest instance.
+Joins a dog and video to one official contest instance. A Verify.Dog review is not required.
 
 Fields:
 
@@ -532,25 +532,11 @@ Do not store five-star averages or Fan Score on Entry.
 
 Purpose:
 
-Contest-required Verify.Dog review for the launch contest.
+Optional written content attached to an entry. Not required for the public monthly contest.
 
-Fields:
+A Verify.Dog customer review is not an entry requirement.
 
-id
-
-entry_id
-
-user_id
-
-review_text
-
-disclosure_version
-
-created_at
-
-updated_at
-
-The public display should make the contest incentive disclosure visible near the review.
+Do not implement a required review field in Phase 02.
 
 ## 13. Vote
 

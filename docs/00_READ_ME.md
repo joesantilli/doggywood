@@ -14,37 +14,37 @@ Do not implement authentication, voting, contests, profiles, or video submission
 
 Hollywood has stars. Doggywood has dogs.
 
-Doggywood is a social short video platform where dogs become the celebrities.
+Doggywood is a public monthly dog video contest and entertainment property. Dogs become the celebrities.
 
-Verify.Dog is the master identity platform. Doggywood does not create a separate independent authentication identity for the same person.
+Verify.Dog is the sponsor and the intended future master identity platform. Doggywood does not create a separate independent authentication identity for the same person.
 
-The first launch campaign is Monthly Doggywood Star, a calendar-month contest for verified Verify.Dog customers.
+The first launch campaign is Monthly Doggywood Star, a public calendar-month contest.
 
-A verified Verify.Dog customer authenticates through Verify.Dog, creates a dog profile, uploads a vertical video no longer than 59 seconds, writes an honest review of the Verify.Dog experience, and publishes the entry after moderation.
+Anyone who meets the contest eligibility rules may enter. Verify.Dog customer status is not required. A Verify.Dog review is not required.
 
-A registered Verify.Dog user, including a public voter who is not a Verify.Dog customer, can authenticate through Verify.Dog and cast one valid upvote per eligible contest entry.
+Entrants upload a vertical video no longer than 30 seconds, share the entry, and collect valid authenticated upvotes.
 
 The official monthly winner is the eligible entry with the highest number of valid authenticated upvotes during that calendar month.
 
-The prize is 300 dollars.
+The prize is 500 dollars.
 
 ## Core launch goals
 
-1. Generate authentic Verify.Dog customer video stories.
+1. Give dog owners a public stage for cute, funny, talented, or unforgettable dogs.
 
-2. Give Verify.Dog customers a reason to share Doggywood publicly.
+2. Collect real contest entries before showing a public social feed.
 
-3. Collect real contest entries before showing a public social feed.
+3. Make every entrant motivated to recruit viewers and votes through sharing.
 
-4. Build a reusable dog profile and video audience that can support future contests unrelated to Verify.Dog.
+4. Keep Doggywood an entertainment property, not a customer review program.
 
-5. Make every entrant motivated to recruit viewers and votes through sharing.
+5. Preserve Verify.Dog as sponsor and future identity system without making customer status a contest requirement.
 
 ## Two product states
 
 Launch State:
 
-The public `/` page is an entry-focused landing page for the Verify.Dog customer contest.
+The public `/` page is an entry-focused landing page for the public monthly contest.
 
 The implemented September approved desktop hero supersedes earlier headline and layout strings in this file for that page. Do not restore two-thirds / one-third hero proportions or the archive headlines below onto the live landing.
 
@@ -64,7 +64,7 @@ HOLLYWOOD HAS STARS. DOGGYWOOD HAS DOGS.
 
 Primary supporting line:
 
-Give your dog their shot at fame. Share their story, win over the fans, and compete for 300 dollars every month.
+Give your dog their shot at fame. Share their story, win over the fans, and compete for 500 dollars every month.
 
 Primary action:
 

@@ -414,7 +414,7 @@ Store duration.
 
 Store dimensions.
 
-Validate duration no longer than 59 seconds.
+Validate duration no longer than 30 seconds.
 
 Validate vertical orientation.
 

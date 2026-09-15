@@ -1,8 +1,16 @@
+export type ContestPeriod = {
+  monthLabel: string;
+  entryDeadline: string;
+  votingDeadline: string;
+};
+
+export const contestPeriod: ContestPeriod | null = null;
+
 export const launchCopy = {
   enter: "Enter the Contest",
   heroCta: "ENTER THIS MONTH'S CONTEST",
   viewRules: "READ OFFICIAL RULES",
-  submit: "SUBMIT MY DOG",
+  submit: "Submit My Entry",
   backToVerifyDog: "Back to Verify.Dog",
   verifyDogHref: "https://verify.dog",
   heroEyebrow: "WIN $500 THIS MONTH!",
@@ -32,48 +40,102 @@ export const launchCopy = {
       tone: "gold" as const,
     },
   ],
-  howHeading: "Enter. Share. Win.",
-  howLede: "Getting started takes about a minute.",
+  aboutEyebrow: "ABOUT DOGGYWOOD",
+  aboutHeading: "A Monthly Contest for Dogs Who Deserve the Spotlight",
+  aboutLede:
+    "Think your dog is ridiculously cute, hilarious, talented, or impossible not to love? Upload a short video, share your entry, and let Doggywood voters decide. A new winner takes home $500 every month.",
+  aboutCards: [
+    {
+      title: "$500 Every Month",
+      body: "A new Doggywood winner is selected every month. The eligible entry with the most valid authenticated upvotes wins $500.",
+      icon: "contest_trophy" as const,
+    },
+    {
+      title: "Show Off Your Dog",
+      body: "Upload a vertical video showing what makes your dog cute, funny, talented, or unforgettable.",
+      icon: "contest_video" as const,
+    },
+    {
+      title: "Get Upvotes",
+      body: "Share your Doggywood entry with friends, family, and anyone who needs to see your dog.",
+      icon: "contest_upvote" as const,
+    },
+    {
+      title: "Join Doggywood",
+      body: "Discover great dogs, vote for your favorites, and help choose the next Doggywood Star.",
+      icon: "contest_join" as const,
+    },
+  ],
+  howEyebrow: "HOW IT WORKS",
+  howHeading: "It’s Easy to Enter",
   stages: [
     {
       step: "STEP 1",
-      title: "ENTER",
-      body: "Complete the contest form with your details.",
-      icon: "step_enter" as const,
+      title: "Record Your Dog",
+      body: "Capture a cute, funny, talented, or unforgettable moment. Your video must be 30 seconds or less.",
+      icon: "step_record" as const,
     },
     {
       step: "STEP 2",
-      title: "UPLOAD",
-      body: "Upload a 30 second vertical video of your dog.",
+      title: "Upload Your Video",
+      body: "Create your Doggywood entry and upload your vertical dog video.",
       icon: "step_upload" as const,
     },
     {
       step: "STEP 3",
-      title: "SHARE",
-      body: "Rally friends and family to upvote your entry.",
+      title: "Share With Friends",
+      body: "Share your Doggywood entry and bring people to watch and upvote your dog.",
       icon: "step_share" as const,
     },
     {
       step: "STEP 4",
-      title: "WIN $500",
-      body: "The highest valid upvote total wins.",
+      title: "Win $500",
+      body: "The eligible entry with the most valid authenticated upvotes when the monthly contest closes wins $500.",
       icon: "step_win" as const,
     },
   ],
-  formHeading: "Enter Your Dog",
-  formLede: "Your dog could be this month's $500 winner.",
-  videoTitle: "VIDEO UPLOAD",
+  votingHeading: "How Voting Works",
+  votingRules: [
+    "Only registered authenticated users may upvote.",
+    "One registered user may cast one valid upvote for each contest entry.",
+    "The eligible entry with the most valid authenticated upvotes at contest close wins $500.",
+  ],
+  votingNote: "Sharing helps more people discover your dog. Sharing itself is not a vote.",
+  formEyebrow: "ENTER DOGGYWOOD",
+  formHeading: "Enter This Month’s Contest",
+  formLede:
+    "Upload your dog’s best 30 seconds and give them a chance to become the next Doggywood Star.",
+  videoTitle: "Upload Your Dog Video",
   videoHint: "Click to upload or drag and drop",
-  videoSpecs: ["Vertical video", "Maximum 30 seconds", "MP4 or MOV"],
-  previewLabel: "ENTRY PREVIEW PLACEHOLDER",
+  videoSpecs: [
+    "30 seconds or less",
+    "Vertical video preferred",
+    "MP4, MOV, or WEBM",
+    "Maximum 500MB",
+  ],
+  replaceVideo: "Replace Video",
+  removeVideo: "Remove Video",
+  requirementsHeading: "Entry Requirements",
+  requirements: [
+    "Your dog must be featured in the video",
+    "Video must be 30 seconds or less",
+    "Original video content",
+    "You must have the right to submit the video",
+    "Use only music or audio you have rights or permission to use",
+    "Entry must comply with the Official Rules",
+  ],
+  authNotice:
+    "You will verify your email address or mobile number before your entry is accepted.",
+  readyMessage:
+    "Your entry details are ready. Identity verification will be added in the next phase.",
   formNote: "One entry per dog during each monthly contest.",
   agreement:
     "I agree to the Official Rules, Terms of Service, and Privacy Policy.",
   rulesHeading: "Contest Rules at a Glance",
   rulesBasicsHeading: "THE BASICS",
   rulesBasics: [
-    "Enter once each monthly contest",
-    "Upload a vertical video of your dog",
+    "Open to the public under the Official Rules",
+    "Upload a video of your dog",
     "Maximum 30 seconds",
     "Submit original content",
     "Follow the Official Rules",
@@ -81,9 +143,9 @@ export const launchCopy = {
   rulesWinHeading: "HOW YOU WIN",
   rulesWin: [
     "Share your entry",
-    "Invite friends to vote",
-    "Collect valid upvotes",
-    "Highest eligible vote total wins $500",
+    "Invite friends to watch",
+    "Collect valid authenticated upvotes",
+    "Most valid authenticated upvotes wins $500",
     "New winner every month",
   ],
   faqEyebrow: "FAQ",
@@ -92,19 +154,19 @@ export const launchCopy = {
   faqs: [
     {
       q: "Who can enter the Doggywood contest?",
-      a: "Dog owners generally. Verify.Dog sponsors Doggywood, but you do not need to be a Verify.Dog customer to enter.",
+      a: "Anyone who meets the contest eligibility rules. Doggywood is a public contest. You do not need to be a Verify.Dog customer, and a Verify.Dog review is not required.",
     },
     {
       q: "What kind of video can I upload?",
-      a: "An original vertical video of your dog, 30 seconds or less.",
+      a: "An original video of your dog, 30 seconds or less. Vertical video is preferred. Use MP4, MOV, or WEBM, up to 500MB.",
     },
     {
       q: "How do upvotes work?",
-      a: "Share your entry and rally your friends to upvote. Valid upvotes count toward the monthly total.",
+      a: "Only registered authenticated users may upvote. One registered user may cast one valid upvote for each contest entry. Sharing helps people find your dog, but sharing itself is not a vote.",
     },
     {
       q: "How is the winner selected?",
-      a: "The dog with the most valid upvotes wins $500.",
+      a: "The eligible entry with the most valid authenticated upvotes wins $500.",
     },
     {
       q: "Can I enter again next month?",
@@ -119,7 +181,7 @@ export const launchCopy = {
       a: "The complete Official Rules are on the Official Rules page.",
     },
   ],
+  finalHeading: "Think Your Dog Has What It Takes?",
+  finalLede: "Upload your dog’s best 30 seconds and compete for $500 this month.",
   footerNote: "Sponsored by Verify.Dog",
-  formDisclaimer:
-    "Before your entry is accepted, your email address or mobile number will be verified by email or SMS.",
 } as const;

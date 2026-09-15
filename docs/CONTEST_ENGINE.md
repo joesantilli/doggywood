@@ -18,7 +18,7 @@ Calendar month
 
 Prize:
 
-300 dollars
+500 dollars
 
 Sponsor:
 
@@ -26,21 +26,21 @@ Verify.Dog
 
 Eligibility to enter:
 
-Verified Verify.Dog customer who is Doggywood Contest Entry Eligible
+Anyone who meets the Official Rules. Verify.Dog customer status is not required. A Verify.Dog review is not required.
 
 Eligibility to vote:
 
-Registered Verify.Dog user who is Doggywood Voting Eligible
+Registered authenticated user who is Doggywood Voting Eligible
 
 A public voter does not need to be a Verify.Dog customer.
 
 Authentication:
 
-Verify.Dog master identity through trusted application relationship
+Phase 02 displays a notice only. Phase 03 implements email verification using Resend and SMS verification using Twilio. Verify.Dog remains the intended future master identity system.
 
 Entry:
 
-One eligible dog video plus one honest Verify.Dog review
+One eligible dog video. Optional caption. No Verify.Dog review.
 
 Official winner:
 
@@ -136,19 +136,13 @@ Fraud review is complete and the winner is recorded.
 
 ## 5. Entry requirements
 
-User must be authenticated through Verify.Dog.
-
-User must be Doggywood Contest Entry Eligible for that contest.
-
 User must meet the age and geographic requirements defined in the official rules.
-
-Dog profile must be complete.
 
 Video must pass technical validation.
 
 Video must pass moderation.
 
-For the launch contest, a Verify.Dog review must be present.
+A Verify.Dog review is not required.
 
 Terms and media permission must be accepted.
 
@@ -404,15 +398,9 @@ These achievements do not add official votes.
 
 ## 15. Review disclosure
 
-Every launch-contest review should have a visible disclosure that explains:
+A Verify.Dog review is not required for the public monthly contest.
 
-The customer submitted the review as part of a Doggywood prize promotion sponsored by Verify.Dog.
-
-Contestants are asked for an honest review.
-
-A positive review is not required.
-
-This disclosure should remain attached to the review wherever the review is publicly displayed.
+Do not collect, display, or require a Verify.Dog customer review as a contest entry condition.
 
 ## 16. Entry limit
 

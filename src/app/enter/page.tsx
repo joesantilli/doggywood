@@ -13,7 +13,7 @@ export default function EnterPage() {
     <PageContainer>
       <section className="mx-auto w-full max-w-[900px] py-space-40">
         <header className="text-center">
-          <p className="dw-eyebrow mx-auto">Enter</p>
+          <p className="dw-eyebrow mx-auto">{launchCopy.formEyebrow}</p>
           <h1 className="mt-3 text-h1 text-launch-navy">{launchCopy.formHeading}</h1>
           <p className="mt-space-12 text-body-large text-launch-muted">
             {launchCopy.formLede}

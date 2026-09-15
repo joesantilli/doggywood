@@ -8,7 +8,7 @@ import type { ReactNode } from "react";
 import { ContestIcon, type ContestIconName } from "@/components/ui/ContestIcon";
 import { LaunchButton } from "@/components/ui/LaunchButton";
 import { EntryForm } from "@/features/homepage/EntryForm";
-import { launchCopy } from "@/features/homepage/launchCopy";
+import { contestPeriod, launchCopy } from "@/features/homepage/launchCopy";
 import type { VerifyDogPrefill } from "@/lib/validation/entry";
 
 function BelowHero({
@@ -19,6 +19,19 @@ function BelowHero({
   className?: string;
 }) {
   return <div className={`dw-below ${className}`.trim()}>{children}</div>;
+}
+
+function ContestTiming() {
+  if (!contestPeriod) {
+    return null;
+  }
+
+  return (
+    <p className="dw-contest-timing">
+      {contestPeriod.monthLabel}. Entries close {contestPeriod.entryDeadline}. Voting
+      closes {contestPeriod.votingDeadline}.
+    </p>
+  );
 }
 
 function FaqList() {
@@ -160,10 +173,30 @@ export function FirstRunContestLanding({ prefill }: { prefill: VerifyDogPrefill 
         </BelowHero>
       </section>
 
+      <section className="dw-about" id="about">
+        <BelowHero>
+          <div className="dw-about-intro">
+            <p className="dw-eyebrow">{launchCopy.aboutEyebrow}</p>
+            <h2 className="dw-section-title dw-about-title">{launchCopy.aboutHeading}</h2>
+            <p className="dw-about-lede">{launchCopy.aboutLede}</p>
+            <ContestTiming />
+          </div>
+          <ul className="dw-about-cards">
+            {launchCopy.aboutCards.map((card) => (
+              <li className="dw-about-card" key={card.title}>
+                <ContestIcon name={card.icon} size={56} />
+                <h3>{card.title}</h3>
+                <p>{card.body}</p>
+              </li>
+            ))}
+          </ul>
+        </BelowHero>
+      </section>
+
       <section className="dw-how" id="how-it-works">
         <BelowHero>
+          <p className="dw-eyebrow dw-how-eyebrow">{launchCopy.howEyebrow}</p>
           <h2 className="dw-section-title dw-section-title-how">{launchCopy.howHeading}</h2>
-          <p className="dw-how-lede">{launchCopy.howLede}</p>
           <ol className="dw-how-cards">
             {launchCopy.stages.map((stage) => (
               <li className="dw-how-card" key={stage.title}>
@@ -177,14 +210,33 @@ export function FirstRunContestLanding({ prefill }: { prefill: VerifyDogPrefill 
         </BelowHero>
       </section>
 
-      <section className="bg-[#F7F4EC] py-4 lg:py-5" id="enter">
+      <section className="dw-vote">
         <BelowHero>
-          <h2 className="dw-section-title text-center lg:text-left">{launchCopy.formHeading}</h2>
-          <p className="mt-1 text-center text-[15px] leading-6 text-launch-muted lg:text-left lg:text-[16px]">
-            {launchCopy.formLede}
-          </p>
-          <div className="mt-4">
-            <EntryForm prefill={prefill} />
+          <h2 className="dw-section-title dw-vote-title">{launchCopy.votingHeading}</h2>
+          <ol className="dw-vote-rules">
+            {launchCopy.votingRules.map((rule, index) => (
+              <li className="dw-vote-rule" key={rule}>
+                <span aria-hidden="true">{index + 1}</span>
+                <p>{rule}</p>
+              </li>
+            ))}
+          </ol>
+          <p className="dw-vote-note">{launchCopy.votingNote}</p>
+        </BelowHero>
+      </section>
+
+      <section className="dw-enter" id="enter">
+        <BelowHero>
+          <div className="dw-enter-shell">
+            <div className="dw-enter-intro">
+              <p className="dw-eyebrow">{launchCopy.formEyebrow}</p>
+              <h2 className="dw-section-title dw-enter-title">{launchCopy.formHeading}</h2>
+              <p className="dw-enter-lede">{launchCopy.formLede}</p>
+              <ContestTiming />
+            </div>
+            <div className="dw-enter-form">
+              <EntryForm prefill={prefill} />
+            </div>
           </div>
         </BelowHero>
       </section>
@@ -242,6 +294,16 @@ export function FirstRunContestLanding({ prefill }: { prefill: VerifyDogPrefill 
             </div>
             <FaqList />
           </div>
+        </BelowHero>
+      </section>
+
+      <section className="dw-final-cta">
+        <BelowHero>
+          <h2 className="dw-section-title dw-final-title">{launchCopy.finalHeading}</h2>
+          <p className="dw-final-lede">{launchCopy.finalLede}</p>
+          <a className="dw-btn dw-btn-gold dw-final-button" href="#enter">
+            {launchCopy.enter}
+          </a>
         </BelowHero>
       </section>
     </>

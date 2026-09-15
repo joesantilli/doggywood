@@ -16,13 +16,19 @@ Dogs are the celebrities. Their owners are their managers. Viewers are fans. New
 
 Doggywood must never feel like a generic testimonial page.
 
-Verify.Dog is the master identity platform, the launch sponsor, and the source of the first contest audience.
+Verify.Dog is the sponsor and the intended future master identity platform.
+
+Doggywood is a public monthly dog video contest and entertainment property. It is not a customer review program.
 
 ## 2. Two product states
 
 ### 2.1 Launch State
 
-The initial public Doggywood page exists to collect Verify.Dog customer contest entries.
+The initial public Doggywood page exists to collect public contest entries.
+
+Verify.Dog customer status is not required.
+
+A Verify.Dog review is not required.
 
 There are currently no approved public contestants.
 
@@ -42,7 +48,7 @@ Profiles
 
 Trending activity
 
-The launch landing page focuses on contest invitation, eligibility, how to enter, video and review requirements, rules, and calls to action.
+The launch landing page focuses on contest invitation, how to enter, how voting works, video upload, and calls to action.
 
 See LAUNCH_LANDING_PAGE_SPEC.md.
 
@@ -58,37 +64,37 @@ These states are sequential. The launch page is not a fake social homepage.
 
 Doggywood gives dog owners a public stage for their dog.
 
-The initial contest is Monthly Doggywood Star.
+The initial contest is Monthly Doggywood Star, a public monthly dog video contest.
 
-A verified Verify.Dog customer can:
+Anyone who meets the contest eligibility rules may enter.
 
-1. Authenticate through Verify.Dog.
+A contestant can:
 
-2. Create a Doggywood display profile and a profile for their dog.
+1. Record a cute, funny, talented, unusual, or unforgettable dog video of 30 seconds or less.
 
-3. Upload a vertical video no longer than 59 seconds.
+2. Create a Doggywood entry and upload that vertical video.
 
-4. Write an honest review about their Verify.Dog experience.
+3. Share the entry with friends, family, and anyone who needs to see the dog.
 
-5. Publish the contest entry after moderation.
+4. Collect valid authenticated upvotes from registered users.
 
-6. Share the entry with friends, family, and social networks.
+5. Compete for the monthly 500 dollar prize.
 
-7. Collect authenticated upvotes.
-
-8. Compete for the monthly 300 dollar prize.
-
-A registered Verify.Dog user, including a public voter who is not a Verify.Dog customer, can authenticate through Verify.Dog so they can watch, vote, follow, save, and share.
+A registered authenticated user may cast one valid upvote for each contest entry.
 
 A public voter does not need to be a Verify.Dog customer.
 
-A contest entrant in the initial launch contest must be a verified Verify.Dog customer.
+A contest entrant does not need to be a Verify.Dog customer.
+
+A Verify.Dog review is not required.
+
+The official monthly winner is the eligible entry with the most valid authenticated upvotes.
 
 ## 4. Primary audiences
 
-### 4.1 Verify.Dog customer contestant
+### 4.1 Public contestant
 
-This user already used Verify.Dog for an ESA, PSD, service animal, or related pet service.
+This user is a dog owner who wants to show off their dog.
 
 Primary goal:
 
@@ -182,7 +188,7 @@ After authentication, return the user to the exact Doggywood page they came from
 
 Record a vote only after explicit user action.
 
-Existing authenticated Verify.Dog customers should enter Doggywood with as little friction as possible.
+Existing Verify.Dog customers may enter the same public contest. Customer status is not an advantage or a requirement.
 
 See IDENTITY_ARCHITECTURE.md.
 
@@ -198,7 +204,7 @@ Optional biography
 
 Doggywood-owned presentation fields
 
-Contest eligibility is derived from Verify.Dog identity state, not from a second Doggywood customer database.
+Contest eligibility is derived from Official Rules requirements, not from Verify.Dog customer status.
 
 ### 7.2 Dog profile
 
@@ -248,15 +254,13 @@ Required conceptual states:
 
 Registered User
 
-Verified Customer
-
 Doggywood Voting Eligible
 
 Doggywood Contest Entry Eligible
 
-Only contest-entry eligible users can publish an initial Verify.Dog contest entry.
+Registered authenticated users can vote.
 
-Registered users can vote and use social functions without being customers.
+Anyone who meets the Official Rules may enter. Verify.Dog customer status is not required.
 
 ### 7.4 Video submission
 
@@ -270,19 +274,15 @@ Preferred aspect ratio:
 
 Maximum duration:
 
-59 seconds
+30 seconds
 
 Required content:
 
-Dog or pet must be visible for a meaningful portion of the video.
+Dog must be featured in the video.
 
-Required written review:
+A Verify.Dog review is not required.
 
-Contestant must write an honest review of their Verify.Dog experience.
-
-Review positivity is not required.
-
-Required caption:
+Optional caption:
 
 Short public caption for the dog video.
 
@@ -396,7 +396,7 @@ Eligible entry with the most valid authenticated upvotes during that calendar mo
 
 Prize:
 
-300 dollars
+500 dollars
 
 Each contest instance must have configurable:
 
@@ -518,49 +518,45 @@ Administrative message
 
 ## 8. Contest submission flow
 
+Phase 02 collects entry details on the public landing form. It does not persist entries, send verification codes, or create sessions.
+
+Later phases:
+
 Screen one:
 
-Authenticate through Verify.Dog if needed.
+Verify email or mobile number.
 
 Screen two:
 
-Confirm verified customer eligibility for the launch contest.
+Create or select dog.
 
 Screen three:
 
-Create or select dog.
+Upload vertical video.
 
 Screen four:
 
-Upload vertical video.
+Add optional video caption.
 
 Screen five:
 
-Write honest Verify.Dog review.
+Review contest terms and media permission.
 
 Screen six:
 
-Add video caption.
+Submit for moderation.
 
 Screen seven:
 
-Review contest terms and media permission.
-
-Screen eight:
-
-Submit for moderation.
-
-Screen nine:
-
 Show pending moderation state.
 
-Screen ten after approval:
+Screen eight after approval:
 
 Your dog just premiered in Doggywood.
 
 Primary action:
 
-Share this Premiere.
+Share this entry.
 
 ## 9. Public viewer flow
 
@@ -619,10 +615,6 @@ The product should optimize this loop before adding unrelated social features.
 The product must clearly show:
 
 Votes are from authenticated users.
-
-Contest reviews are submitted as part of a prize promotion.
-
-Positive reviews are not required.
 
 Videos are moderated before contest publication.
 

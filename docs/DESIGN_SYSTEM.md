@@ -476,8 +476,6 @@ How do I enter?
 
 What video do I need?
 
-What review do I need?
-
 What are the rules?
 
 Future Social contest screens should answer:

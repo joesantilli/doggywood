@@ -483,3 +483,285 @@ summary::-webkit-details-marker {
 details.dw-faq-item[open] .dw-faq-chevron {
   transform: rotate(180deg);
 }
+
+.dw-about {
+  background: #f7f4ec;
+  padding-top: 64px;
+  padding-bottom: 64px;
+}
+
+.dw-about-intro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.dw-about-intro .dw-eyebrow {
+  margin: 0 auto 12px;
+}
+
+.dw-about-title {
+  max-width: 16em;
+}
+
+.dw-about-lede {
+  margin-top: 12px;
+  max-width: 46em;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--launch-muted);
+}
+
+.dw-contest-timing {
+  margin-top: 10px;
+  font-size: 14px;
+  line-height: 1.4;
+  color: var(--launch-navy);
+}
+
+.dw-about-cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 18px;
+  margin-top: 28px;
+  padding: 0;
+  list-style: none;
+}
+
+.dw-about-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  padding: 28px 24px;
+  background: #ffffff;
+  border: 1px solid #e6e2d8;
+  border-radius: 20px;
+  text-align: center;
+}
+
+.dw-about-card h3 {
+  margin: 14px 0 0;
+  font-size: 20px;
+  line-height: 1.2;
+  font-weight: 800;
+  color: var(--launch-navy);
+}
+
+.dw-about-card p {
+  margin: 8px 0 0;
+  font-size: 15px;
+  line-height: 1.45;
+  color: var(--launch-muted);
+}
+
+.dw-how-eyebrow {
+  margin: 0 auto 12px;
+}
+
+.dw-vote {
+  background: #f7f4ec;
+  padding-top: 56px;
+  padding-bottom: 56px;
+}
+
+.dw-vote-title {
+  text-align: center;
+}
+
+.dw-vote-rules {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+  margin: 22px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.dw-vote-rule {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 18px 18px;
+  background: #ffffff;
+  border: 1px solid #e6e2d8;
+  border-radius: 16px;
+}
+
+.dw-vote-rule span {
+  display: flex;
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: var(--launch-gold);
+  color: var(--launch-navy);
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.dw-vote-rule p {
+  margin: 4px 0 0;
+  font-size: 15px;
+  line-height: 1.45;
+  color: var(--launch-navy);
+}
+
+.dw-vote-note {
+  margin-top: 16px;
+  text-align: center;
+  font-size: 14px;
+  line-height: 1.45;
+  color: var(--launch-muted);
+}
+
+.dw-enter {
+  background: #fff8e8;
+  padding-top: 64px;
+  padding-bottom: 40px;
+}
+
+.dw-enter-shell {
+  width: 100%;
+  max-width: 880px;
+  margin-inline: auto;
+}
+
+.dw-enter-intro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.dw-enter-intro .dw-eyebrow {
+  margin: 0 auto 12px;
+}
+
+.dw-enter-lede {
+  margin-top: 10px;
+  max-width: 38em;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--launch-muted);
+}
+
+.dw-enter-form {
+  padding: 24px 20px 8px;
+  background: #ffffff;
+  border: 1px solid #e6e2d8;
+  border-radius: 22px;
+}
+
+.dw-final-cta {
+  background: var(--launch-gold);
+  padding-top: 64px;
+  padding-bottom: var(--space-32);
+  text-align: center;
+}
+
+.dw-final-title {
+  color: var(--launch-navy);
+}
+
+.dw-final-lede {
+  margin: 12px auto 0;
+  max-width: 34em;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--launch-navy);
+}
+
+.dw-final-button {
+  width: 100%;
+  max-width: 320px;
+  height: 52px;
+  margin-top: 24px;
+  margin-bottom: 0;
+  background: var(--launch-navy);
+  border-color: var(--launch-navy);
+  color: #ffffff;
+}
+
+.dw-final-button:hover {
+  background: #000000;
+  border-color: #000000;
+  color: #ffffff;
+}
+
+@media (min-width: 768px) {
+  .dw-about-cards {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 1024px) {
+  .dw-about {
+    padding-top: 72px;
+    padding-bottom: 72px;
+  }
+
+  .dw-about-intro {
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .dw-about-intro .dw-eyebrow {
+    margin-left: 0;
+  }
+
+  .dw-about-title {
+    max-width: 18em;
+  }
+
+  .dw-about-lede {
+    font-size: 17px;
+  }
+
+  .dw-about-cards {
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .dw-about-card {
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .dw-how-eyebrow {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .dw-vote-title {
+    text-align: left;
+  }
+
+  .dw-vote-rules {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+  }
+
+  .dw-vote-note {
+    text-align: left;
+  }
+
+  .dw-enter-form {
+    padding: 32px 36px 12px;
+  }
+
+  .dw-final-button {
+    width: auto;
+    min-width: 240px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .dw-about-cards {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}

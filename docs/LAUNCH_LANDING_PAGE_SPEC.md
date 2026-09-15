@@ -4,7 +4,13 @@
 
 The initial Doggywood public page is a launch landing page.
 
-Its job is to collect Verify.Dog customer contest entries for Monthly Doggywood Star.
+Its job is to collect public monthly dog video contest entries.
+
+Doggywood is a public dog entertainment and contest platform. It is not a Verify.Dog customer review program.
+
+Verify.Dog customer status is not required.
+
+A Verify.Dog review is not required.
 
 There are currently no approved public contestants.
 
@@ -36,23 +42,21 @@ Brand photography of real dogs is allowed when it is clearly campaign photograph
 
 ## 3. What this page must focus on
 
-Contest invitation
+Public contest invitation
 
-300 dollar monthly prize
-
-Verify.Dog customer eligibility
+500 dollar monthly prize
 
 Simple explanation
 
-Entry incentives
-
 How to enter
 
-Starter entry form
+How voting works
 
-Video requirements
+Contained entry form
 
-Written Verify.Dog review requirement
+Video upload
+
+Entry requirements
 
 Contest rules
 
@@ -157,109 +161,119 @@ Do not use a fake featured contestant video card with invented votes.
 
 The implemented September approved desktop hero supersedes earlier hero layout instructions in this spec, including any two-thirds / one-third or other width split. Do not change the current 46% / 54% grid, 520px height, rounded feature card, or `/brand/doggywood-mobile-hero.webp` crop to match older documentation.
 
-### 5.3 Contest invitation
+Everything from the top of the header through the bottom of the trust strip is frozen. Phase 02 work begins immediately below the trust strip.
 
-Explain Monthly Doggywood Star.
+### 5.3 About Doggywood
 
-This is a calendar-month contest.
+Section label: ABOUT DOGGYWOOD
 
-The eligible entry with the most valid authenticated upvotes during that month wins 300 dollars.
+Headline: A Monthly Contest for Dogs Who Deserve the Spotlight
+
+Doggywood is a public monthly contest for dogs who deserve the spotlight.
+
+Anyone who meets the contest eligibility rules may enter.
+
+The eligible entry with the most valid authenticated upvotes wins 500 dollars.
 
 ### 5.4 Eligibility
 
-The first contest is open to verified Verify.Dog customers.
+The contest is open to the public.
 
-A registered Verify.Dog user who is not a customer may later vote, but cannot enter this launch contest.
+Verify.Dog customer status is not required.
 
-Plain-language eligibility summary:
+A Verify.Dog review is not required.
 
-Verified Verify.Dog customer
-
-Authenticate through Verify.Dog
-
-One honest review
-
-One vertical video under 59 seconds
+Do not reintroduce either requirement.
 
 ### 5.5 How to enter
 
 Simple numbered steps:
 
-1. Authenticate through Verify.Dog.
+1. Record your dog. 30 seconds or less.
 
-2. Create your dog's profile.
+2. Upload your vertical dog video.
 
-3. Upload a vertical video under one minute.
+3. Share with friends.
 
-4. Write an honest Verify.Dog review.
+4. The eligible entry with the most valid authenticated upvotes wins 500 dollars.
 
-5. Submit for review.
+### 5.6 How voting works
 
-6. Share your Premiere and ask fans to vote.
+Informational only in Phase 02. Do not persist votes.
 
-### 5.6 Video requirements
+Only registered authenticated users may upvote.
 
-Vertical video
+One registered user may cast one valid upvote for each contest entry.
 
-Preferred shape 9 by 16
+The eligible entry with the most valid authenticated upvotes at contest close wins 500 dollars.
 
-Maximum duration 59 seconds
+Sharing helps discovery. Sharing itself is not a vote.
 
-Dog or pet must be visible for a meaningful portion of the video
+### 5.7 Video requirements
+
+Vertical video preferred
+
+Maximum duration 30 seconds
+
+MP4, MOV, or WEBM
+
+Maximum 500MB
+
+Dog must be featured in the video
+
+Original content
 
 Entrant must have the right to submit the video and audio
 
-### 5.7 Review requirement
+Entry must comply with the Official Rules
 
-Contestants must write an honest review of their Verify.Dog experience.
+### 5.8 Review requirement
 
-A positive review is not required.
+Removed.
 
-The review will be publicly identified as part of a prize promotion.
+A Verify.Dog review is not part of the public contest.
 
-### 5.8 Entry incentives
+### 5.9 Entry form
 
-Give your dog a public stage.
+The entry form stays in its own body section below the trust strip.
 
-Compete for 300 dollars every month.
+Do not move it into the hero.
 
-Share a Premiere page fans can vote on.
+Do not make it full page width.
 
-Join the first Doggywood Casting Call.
+Use a centered contained form, approximately 860 to 900 pixels.
 
-### 5.9 Starter entry form
+Fields:
 
-The landing page may include a starter entry form that begins the contest flow.
+First Name
 
-Starter fields:
+Last Name
 
-Dog name
+Email Address
 
-Breed or mix
+Mobile Number
 
-Age
+Dog’s Name
 
-Category
+Optional Video Caption
 
-ESA
+Video Upload
 
-PSD
+Do not include Verify.Dog review, customer status, ESA, PSD, service dog, order, or purchase fields.
 
-Service Dog
+Phase 02 may validate the form on the client.
 
-Pet
+Do not create a persistent contest entry.
 
-Continue action:
+Do not claim the entry has been officially submitted.
 
-Continue to Verify.Dog authentication and the rest of the entry flow
+Show: Your entry details are ready. Identity verification will be added in the next phase.
 
-The starter form is an invitation, not a completed submission.
+Authentication notice:
 
-Do not collect a Doggywood password.
+You will verify your email address or mobile number before your entry is accepted.
 
-Do not collect a second mobile-login identity.
-
-Video upload, eligibility confirmation, review, and terms happen in the later entry steps.
+Do not implement Resend, Twilio, verification codes, or sessions in Phase 02.
 
 ### 5.10 Contest rules
 
@@ -271,19 +285,15 @@ Authenticated upvotes only
 
 One valid vote per user per entry
 
-No self voting
-
-Entries are moderated before they appear publicly
-
-Results are subject to fraud review
+Most valid authenticated upvotes wins 500 dollars
 
 Sharing does not count as a vote
 
 ### 5.11 Final call to action
 
-Enter Doggywood
+Think Your Dog Has What It Takes?
 
-Learn About Verify.Dog
+Enter the Contest, scrolling to the entry form.
 
 ## 6. Voting language on the launch page
 

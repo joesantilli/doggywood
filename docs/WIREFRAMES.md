@@ -16,6 +16,10 @@ Do not implement Future Social State as the launch homepage.
 
 Do not fill Launch State with fake contestants, votes, leaderboards, or trending activity.
 
+The implemented September approved desktop header, hero, and trust strip are frozen. Do not change those wireframe regions to match archive headlines below. Phase 02 work begins below the trust strip.
+
+Doggywood is a public monthly dog video contest. Verify.Dog customer status is not required. A Verify.Dog review is not required.
+
 ## Launch State
 
 ## 1. Launch Landing Page Desktop
@@ -41,65 +45,72 @@ Do not fill Launch State with fake contestants, votes, leaderboards, or trending
 └──────────────────────────────────────────────────────────────────────────────┘
 
 ┌──────────────────────────────────────────────────────────────────────────────┐
-│ MONTHLY DOGGYWOOD STAR                                                       │
+│ ABOUT DOGGYWOOD                                                              │
 │                                                                              │
-│ A calendar-month contest for verified Verify.Dog customers.                  │
+│ A Monthly Contest for Dogs Who Deserve the Spotlight                         │
 │                                                                              │
-│ The eligible entry with the most valid authenticated upvotes wins            │
-│ 300 dollars.                                                                 │
+│ Public contest. Upload a short video. Share. Let voters decide.              │
+│ The eligible entry with the most valid authenticated upvotes wins $500.      │
 │                                                                              │
-│ Official action later: VOTE FOR THIS DOG                                     │
-│ Sharing does not count as a vote.                                            │
+│ [$500 Every Month] [Show Off Your Dog] [Get Upvotes] [Join Doggywood]        │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│ HOW IT WORKS                                                                 │
+│                                                                              │
+│ It’s Easy to Enter                                                           │
+│                                                                              │
+│ 1. Record Your Dog       2. Upload Your Video                                │
+│ 30 seconds or less       Vertical dog video                                  │
+│                                                                              │
+│ 3. Share With Friends    4. Win $500                                         │
+│ Bring people to upvote   Most valid authenticated upvotes win                │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│ HOW VOTING WORKS                                                             │
+│                                                                              │
+│ 1. Only registered authenticated users may upvote.                           │
+│ 2. One registered user may cast one valid upvote for each contest entry.     │
+│ 3. Most valid authenticated upvotes at contest close wins $500.              │
+│                                                                              │
+│ Sharing itself is not a vote.                                                │
 └──────────────────────────────────────────────────────────────────────────────┘
 
 ┌──────────────────────────────────────────────────────────────────────────────┐
 │ WHO CAN ENTER                                                                │
 │                                                                              │
-│ Verified Verify.Dog customers can enter.                                     │
+│ Anyone who meets the contest eligibility rules.                              │
 │                                                                              │
-│ Registered Verify.Dog users who are not customers can vote later,            │
-│ but cannot enter this launch contest.                                        │
+│ Verify.Dog customer status is not required.                                  │
+│ A Verify.Dog review is not required.                                         │
 └──────────────────────────────────────────────────────────────────────────────┘
 
 ┌──────────────────────────────────────────────────────────────────────────────┐
-│ HOW TO ENTER                                                                 │
+│ ENTER DOGGYWOOD                                                              │
 │                                                                              │
-│ 1. AUTHENTICATE          2. FILM                   3. PREMIERE               │
-│ Sign in through          Upload a vertical         Submit for review,        │
-│ Verify.Dog.              video under 59 seconds    then share and collect    │
-│                          and write an honest       authenticated votes.      │
-│                          Verify.Dog review.                                  │
+│ Enter This Month’s Contest                                                   │
 │                                                                              │
-│                         [ Enter Doggywood ]                                  │
+│ Centered contained form, about 860 to 900 pixels.                            │
+│                                                                              │
+│ First Name / Last Name                                                       │
+│ Email Address / Mobile Number                                                │
+│ Dog’s Name                                                                   │
+│ Optional Video Caption                                                       │
+│ Large video upload + entry requirements                                      │
+│ Authentication notice (no codes in Phase 02)                                 │
+│ [ Submit My Entry ]                                                          │
+│                                                                              │
+│ This does not create an official accepted contest entry.                     │
 └──────────────────────────────────────────────────────────────────────────────┘
 
 ┌──────────────────────────────────────────────────────────────────────────────┐
-│ START YOUR ENTRY                                                             │
+│ VIDEO REQUIREMENTS                                                           │
 │                                                                              │
-│ Dog Name                                                                     │
-│ [                                                                         ]  │
-│                                                                              │
-│ Breed or Mix                                                                 │
-│ [                                                                         ]  │
-│                                                                              │
-│ Age                                                                          │
-│ [                                                                         ]  │
-│                                                                              │
-│ Category                                                                     │
-│ ( ) ESA   ( ) PSD   ( ) Service Dog   ( ) Pet                                │
-│                                                                              │
-│ [ Continue with Verify.Dog ]                                                 │
-│                                                                              │
-│ This starts the entry. It does not submit a finished contest entry.          │
-└──────────────────────────────────────────────────────────────────────────────┘
-
-┌──────────────────────────────────────────────────────────────────────────────┐
-│ VIDEO AND REVIEW REQUIREMENTS                                                │
-│                                                                              │
-│ Vertical video, 9 by 16 preferred, 59 seconds maximum.                       │
-│ Dog or pet must be visible.                                                  │
-│ Honest Verify.Dog review required. A positive review is not required.        │
-│ You must have the right to submit the video and audio.                       │
+│ Vertical video preferred, 30 seconds maximum.                                │
+│ Your dog must be featured in the video.                                      │
+│ Original content. Rights to video and audio required.                        │
+│ A Verify.Dog review is not required.                                         │
 └──────────────────────────────────────────────────────────────────────────────┘
 
 ┌──────────────────────────────────────────────────────────────────────────────┐
@@ -243,12 +254,7 @@ They must never be shown in Launch State.
 │ Buddy's Story                                                                │
 │ Short owner supplied story.                                                  │
 │                                                                              │
-│ Verify.Dog Review                                                            │
-│ Honest customer review text.                                                 │
-│                                                                              │
-│ Disclosure                                                                   │
-│ This review was submitted as part of a Doggywood prize promotion sponsored  │
-│ by Verify.Dog. A positive review is not required.                            │
+│ Optional caption. A Verify.Dog review is not required.                       │
 └──────────────────────────────────────────────────────────────────────────────┘
 ```
 
@@ -297,53 +303,33 @@ Do not silently vote because authentication succeeded.
 ## 6. Enter Doggywood Flow
 
 ```text
-STEP 1 OF 7
+STEP 1 OF 6
 
-YOUR DOGGYWOOD CASTING CALL STARTS HERE
+ENTER THIS MONTH’S CONTEST
 
-Tell us about the star of the show.
+First Name
+Last Name
+Email Address
+Mobile Number
+Dog’s Name
+Optional Video Caption
+Video Upload
 
-Dog Name
-[                                         ]
+Do not collect Verify.Dog review, customer status, ESA, PSD, service dog, order, or purchase information.
 
-Breed or Mix
-[                                         ]
-
-Age
-[                                         ]
-
-Category
-( ) ESA
-( ) PSD
-( ) Service Dog
-( ) Pet
-
-Dog Profile Photo
-[ Upload ]
-
-[ Continue ]
+[ Submit My Entry ]
 ```
 
 ```text
-STEP 2 OF 7
+STEP 2 OF 6
 
-VERIFY YOUR ELIGIBILITY
+VERIFY EMAIL OR MOBILE
 
-The first Doggywood contest is open to verified Verify.Dog customers.
+You will verify your email address or mobile number before your entry is accepted.
 
-Customer Status comes from Verify.Dog.
+Phase 02 shows this notice only. Phase 03 implements Resend and Twilio.
 
-[ Continue with Verify.Dog ]
-
-Result states:
-
-Verified Customer
-
-Registered User, not contest-entry eligible
-
-Manual Review
-
-Not Verified
+A Verify.Dog customer account is not required.
 ```
 
 ```text
@@ -355,7 +341,7 @@ Upload a vertical video.
 
 Maximum duration:
 
-59 seconds
+30 seconds
 
 Preferred shape:
 
@@ -369,29 +355,15 @@ Upload Progress
 ```
 
 ```text
-STEP 4 OF 7
+STEP 4 OF 6
 
-TELL YOUR VERIFY.DOG STORY
-
-How was your experience with Verify.Dog?
-
-We want your honest experience. A positive review is not required.
-
-[ Review text area ]
-
-[ Continue ]
-```
-
-```text
-STEP 5 OF 7
-
-CREATE YOUR PREMIERE
+OPTIONAL VIDEO CAPTION
 
 Video Caption
 
 [ Caption text ]
 
-Preview
+A Verify.Dog review is not collected.
 
 [ Continue ]
 ```

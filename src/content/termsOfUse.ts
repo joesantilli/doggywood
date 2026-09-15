@@ -90,7 +90,7 @@ export const termsOfUseDocument = {
         },
         {
           kind: "p",
-          text: "A person does not need to be an existing Verify.Dog customer merely to participate in Doggywood unless a specific feature or contest expressly states otherwise.",
+          text: "A person does not need to be an existing Verify.Dog customer to enter, vote, or participate in Doggywood. A Verify.Dog review is not required.",
         },
       ],
     },
