@@ -18,6 +18,12 @@
 # production
 /build
 
+# Passenger startup file stays on the production server only
+/app.js
+
+# Passenger restart stamp and temp files
+/tmp/
+
 # misc
 .DS_Store
 *.pem
