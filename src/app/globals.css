@@ -96,7 +96,7 @@ summary::-webkit-details-marker {
 
 .dw-section-title {
   font-size: 32px;
-  line-height: 1.12;
+  line-height: 1.18;
   font-weight: 800;
   letter-spacing: -0.03em;
   color: var(--launch-navy);
@@ -124,7 +124,7 @@ summary::-webkit-details-marker {
 
 .dw-section-title-how {
   font-size: 32px;
-  line-height: 1.05;
+  line-height: 1.18;
   text-align: center;
 }
 
@@ -136,15 +136,15 @@ summary::-webkit-details-marker {
 }
 
 .dw-how {
-  background: #ffffff;
+  background: #FFF9E2;
   border-top: 1px solid #f0ebe0;
   padding-block: 64px 72px;
 }
 
 .dw-how-lede {
-  margin-top: 6px;
+  margin-top: 0;
   font-size: 16px;
-  line-height: 1.4;
+  line-height: 1.5;
   color: var(--launch-muted);
   text-align: center;
 }
@@ -182,18 +182,18 @@ summary::-webkit-details-marker {
 }
 
 .dw-how-card-title {
-  margin: 12px 0 0;
+  margin: 16px 0 0;
   color: var(--launch-navy);
   font-size: 22px;
-  line-height: 1.15;
+  line-height: 1.2;
   font-weight: 800;
   letter-spacing: -0.02em;
 }
 
 .dw-how-card-body {
-  margin: 8px 0 0;
+  margin: 16px 0 0;
   font-size: 15px;
-  line-height: 1.45;
+  line-height: 1.5;
   color: var(--launch-muted);
 }
 
@@ -283,8 +283,8 @@ summary::-webkit-details-marker {
   display: flex;
   width: fit-content;
   flex-direction: column;
-  gap: 4px;
-  margin: 12px auto 0;
+  gap: 8px;
+  margin: 16px auto 0;
   padding: 0;
   list-style: none;
 }
@@ -354,7 +354,7 @@ summary::-webkit-details-marker {
 }
 
 .dw-faq {
-  background: #eef4ff;
+  background: #FFF9E2;
   padding-top: 72px;
   padding-bottom: 80px;
 }
@@ -366,12 +366,16 @@ summary::-webkit-details-marker {
 }
 
 .dw-faq-intro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
+  gap: 20px;
   margin-bottom: 24px;
 }
 
 .dw-faq-intro .dw-eyebrow {
-  margin: 0 auto 12px;
+  margin: 0 auto;
 }
 
 .dw-section-title-faq {
@@ -387,10 +391,10 @@ summary::-webkit-details-marker {
 }
 
 .dw-faq-lede {
-  margin: 8px 0 0;
+  margin: 0;
   max-width: 100%;
   font-size: 16px;
-  line-height: 1.45;
+  line-height: 1.5;
   color: var(--launch-muted);
 }
 
@@ -450,6 +454,7 @@ summary::-webkit-details-marker {
   }
 
   .dw-faq-intro {
+    align-items: flex-start;
     text-align: left;
     margin-bottom: 28px;
   }
@@ -485,7 +490,7 @@ details.dw-faq-item[open] .dw-faq-chevron {
 }
 
 .dw-about {
-  background: #f7f4ec;
+  background: #FFFFFF;
   padding-top: 64px;
   padding-bottom: 64px;
 }
@@ -494,11 +499,12 @@ details.dw-faq-item[open] .dw-faq-chevron {
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 20px;
   text-align: center;
 }
 
 .dw-about-intro .dw-eyebrow {
-  margin: 0 auto 12px;
+  margin: 0 auto;
 }
 
 .dw-about-title {
@@ -506,7 +512,7 @@ details.dw-faq-item[open] .dw-faq-chevron {
 }
 
 .dw-about-lede {
-  margin-top: 12px;
+  margin: 0;
   max-width: 46em;
   font-size: 16px;
   line-height: 1.5;
@@ -514,7 +520,7 @@ details.dw-faq-item[open] .dw-faq-chevron {
 }
 
 .dw-contest-timing {
-  margin-top: 10px;
+  margin: 0;
   font-size: 14px;
   line-height: 1.4;
   color: var(--launch-navy);
@@ -542,26 +548,35 @@ details.dw-faq-item[open] .dw-faq-chevron {
 }
 
 .dw-about-card h3 {
-  margin: 14px 0 0;
+  margin: 16px 0 0;
   font-size: 20px;
-  line-height: 1.2;
+  line-height: 1.25;
   font-weight: 800;
   color: var(--launch-navy);
 }
 
 .dw-about-card p {
-  margin: 8px 0 0;
+  margin: 16px 0 0;
   font-size: 15px;
-  line-height: 1.45;
+  line-height: 1.5;
   color: var(--launch-muted);
 }
 
+.dw-how-intro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  text-align: center;
+}
+
 .dw-how-eyebrow {
-  margin: 0 auto 12px;
+  display: block;
+  margin: 0 auto;
 }
 
 .dw-vote {
-  background: #f7f4ec;
+  background: #FFFFFF;
   padding-top: 56px;
   padding-bottom: 56px;
 }
@@ -619,7 +634,7 @@ details.dw-faq-item[open] .dw-faq-chevron {
 }
 
 .dw-enter {
-  background: #fff8e8;
+  background: #FFF9E2;
   padding-top: 64px;
   padding-bottom: 40px;
 }
@@ -634,16 +649,17 @@ details.dw-faq-item[open] .dw-faq-chevron {
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 20px;
   text-align: center;
   margin-bottom: 28px;
 }
 
 .dw-enter-intro .dw-eyebrow {
-  margin: 0 auto 12px;
+  margin: 0 auto;
 }
 
 .dw-enter-lede {
-  margin-top: 10px;
+  margin: 0;
   max-width: 38em;
   font-size: 16px;
   line-height: 1.5;
@@ -658,7 +674,7 @@ details.dw-faq-item[open] .dw-faq-chevron {
 }
 
 .dw-final-cta {
-  background: var(--launch-gold);
+  background: #FFFFFF;
   padding-top: 64px;
   padding-bottom: var(--space-32);
   text-align: center;
@@ -669,7 +685,7 @@ details.dw-faq-item[open] .dw-faq-chevron {
 }
 
 .dw-final-lede {
-  margin: 12px auto 0;
+  margin: 20px auto 0;
   max-width: 34em;
   font-size: 16px;
   line-height: 1.5;
@@ -682,15 +698,6 @@ details.dw-faq-item[open] .dw-faq-chevron {
   height: 52px;
   margin-top: 24px;
   margin-bottom: 0;
-  background: var(--launch-navy);
-  border-color: var(--launch-navy);
-  color: #ffffff;
-}
-
-.dw-final-button:hover {
-  background: #000000;
-  border-color: #000000;
-  color: #ffffff;
 }
 
 @media (min-width: 768px) {
@@ -732,7 +739,13 @@ details.dw-faq-item[open] .dw-faq-chevron {
     text-align: left;
   }
 
+  .dw-how-intro {
+    align-items: flex-start;
+    text-align: left;
+  }
+
   .dw-how-eyebrow {
+    display: inline-block;
     margin-left: 0;
     margin-right: 0;
   }

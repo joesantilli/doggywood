@@ -17,15 +17,52 @@ type FieldProps = {
   label: string;
   name: string;
   type?: string;
-  defaultValue?: string;
+  value: string;
+  onChange: (value: string) => void;
   required?: boolean;
 };
+
+type VerificationChannel = "email" | "sms";
+type VerificationStep = "form" | "choose_channel" | "code_sent" | "verified";
+
+const REQUEST_ERROR_400 = "Please check the information and try again.";
+const VERIFY_ERROR_400 = "That verification code could not be confirmed. Please try again.";
+const ERROR_429 = "Too many verification requests. Please wait and try again.";
+const ERROR_503 = "Verification is temporarily unavailable. Please try again shortly.";
+const ERROR_500 = "Something went wrong. Please try again.";
+
+function messageForRequestStatus(status: number) {
+  if (status === 400) {
+    return REQUEST_ERROR_400;
+  }
+  if (status === 429) {
+    return ERROR_429;
+  }
+  if (status === 503) {
+    return ERROR_503;
+  }
+  return ERROR_500;
+}
+
+function messageForVerifyStatus(status: number) {
+  if (status === 400) {
+    return VERIFY_ERROR_400;
+  }
+  if (status === 429) {
+    return ERROR_429;
+  }
+  if (status === 503) {
+    return ERROR_503;
+  }
+  return ERROR_500;
+}
 
 function Field({
   label,
   name,
   type = "text",
-  defaultValue,
+  value,
+  onChange,
   required = true,
 }: FieldProps) {
   const id = `entry-${name}`;
@@ -43,33 +80,91 @@ function Field({
       <input
         autoComplete="on"
         className="h-11 rounded-[10px] border border-launch-line bg-white px-3 text-[15px] text-launch-navy"
-        defaultValue={defaultValue}
         id={id}
         name={name}
+        onChange={(event) => onChange(event.target.value)}
         required={required}
         type={type}
+        value={value}
       />
     </div>
   );
 }
 
 export function EntryForm({ prefill }: { prefill: VerifyDogPrefill }) {
+  const defaults = useMemo(() => prefill, [prefill]);
   const [error, setError] = useState<string | null>(null);
   const [pending, setPending] = useState(false);
-  const [ready, setReady] = useState(false);
   const [fileName, setFileName] = useState<string | null>(null);
   const [duration, setDuration] = useState<number | null>(null);
+  const [videoFile, setVideoFile] = useState<File | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
-  const defaults = useMemo(() => prefill, [prefill]);
 
-  async function assignFile(file: File | undefined) {
-    if (!file || !inputRef.current) {
+  const [firstName, setFirstName] = useState(defaults.firstName ?? "");
+  const [lastName, setLastName] = useState(defaults.lastName ?? "");
+  const [email, setEmail] = useState(defaults.email ?? "");
+  const [mobile, setMobile] = useState(defaults.mobile ?? "");
+  const [petName, setPetName] = useState(defaults.petName ?? "");
+  const [caption, setCaption] = useState("");
+  const [rulesAgreed, setRulesAgreed] = useState(false);
+
+  const [step, setStep] = useState<VerificationStep>("form");
+  const [busy, setBusy] = useState<"requesting" | "verifying" | null>(null);
+  const [channel, setChannel] = useState<VerificationChannel | null>(null);
+  const [challengeId, setChallengeId] = useState<string | null>(null);
+  const [, setExpiresAt] = useState<string | null>(null);
+  const [code, setCode] = useState("");
+  const [verifyError, setVerifyError] = useState<string | null>(null);
+
+  function clearVerificationProgress() {
+    setChannel(null);
+    setChallengeId(null);
+    setExpiresAt(null);
+    setCode("");
+    setVerifyError(null);
+    setBusy(null);
+  }
+
+  function onEmailChange(value: string) {
+    setEmail(value);
+    if (channel === "email" && (step === "code_sent" || step === "verified")) {
+      clearVerificationProgress();
+      setStep("choose_channel");
+    }
+  }
+
+  function onMobileChange(value: string) {
+    setMobile(value);
+    if (channel === "sms" && (step === "code_sent" || step === "verified")) {
+      clearVerificationProgress();
+      setStep("choose_channel");
+    }
+  }
+
+  function applyFileToInput(file: File) {
+    const input = inputRef.current;
+    if (!input || input.files?.[0] === file) {
       return;
     }
 
-    const transfer = new DataTransfer();
-    transfer.items.add(file);
-    inputRef.current.files = transfer.files;
+    try {
+      const transfer = new DataTransfer();
+      transfer.items.add(file);
+      if (transfer.files.length > 0) {
+        input.files = transfer.files;
+      }
+    } catch {
+      // The native file input may already hold the selected file.
+    }
+  }
+
+  async function assignFile(file: File | undefined) {
+    if (!file) {
+      return;
+    }
+
+    applyFileToInput(file);
+    setVideoFile(file);
     setFileName(file.name);
     setDuration(await readVideoDurationSeconds(file));
   }
@@ -78,6 +173,7 @@ export function EntryForm({ prefill }: { prefill: VerifyDogPrefill }) {
     if (inputRef.current) {
       inputRef.current.value = "";
     }
+    setVideoFile(null);
     setFileName(null);
     setDuration(null);
   }
@@ -87,15 +183,104 @@ export function EntryForm({ prefill }: { prefill: VerifyDogPrefill }) {
     void assignFile(event.dataTransfer.files[0]);
   }
 
+  async function requestCode(nextChannel: VerificationChannel) {
+    if (busy) {
+      return;
+    }
+
+    setBusy("requesting");
+    setVerifyError(null);
+    setChannel(nextChannel);
+
+    const path = nextChannel === "email" ? "/api/auth/email/request" : "/api/auth/sms/request";
+    const body =
+      nextChannel === "email"
+        ? { email }
+        : { phone: mobile };
+
+    try {
+      const response = await fetch(path, {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify(body),
+      });
+
+      if (!response.ok) {
+        setVerifyError(messageForRequestStatus(response.status));
+        setBusy(null);
+        return;
+      }
+
+      const payload = (await response.json()) as {
+        challengeId?: unknown;
+        expiresAt?: unknown;
+      };
+      if (typeof payload.challengeId !== "string") {
+        setVerifyError(ERROR_500);
+        setBusy(null);
+        return;
+      }
+
+      setChallengeId(payload.challengeId);
+      setExpiresAt(typeof payload.expiresAt === "string" ? payload.expiresAt : null);
+      setCode("");
+      setStep("code_sent");
+      setBusy(null);
+    } catch {
+      setVerifyError(ERROR_500);
+      setBusy(null);
+    }
+  }
+
+  async function submitCode() {
+    if (busy || !channel || !challengeId) {
+      return;
+    }
+
+    setBusy("verifying");
+    setVerifyError(null);
+
+    const path = channel === "email" ? "/api/auth/email/verify" : "/api/auth/sms/verify";
+
+    try {
+      const response = await fetch(path, {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ challengeId, code }),
+      });
+
+      if (!response.ok) {
+        setVerifyError(messageForVerifyStatus(response.status));
+        setBusy(null);
+        return;
+      }
+
+      setCode("");
+      setStep("verified");
+      setBusy(null);
+    } catch {
+      setVerifyError(ERROR_500);
+      setBusy(null);
+    }
+  }
+
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    if (step === "code_sent") {
+      await submitCode();
+      return;
+    }
+    if (step !== "form") {
+      return;
+    }
+
     setError(null);
     setPending(true);
 
     const formData = new FormData(event.currentTarget);
     const parsed = parseEntryForm(formData);
     const video = formData.get("video");
-    const file = video instanceof File ? video : null;
+    const file = video instanceof File && video.size > 0 ? video : videoFile;
     const videoError = validateVideoFile(file);
     const measuredDuration =
       duration ?? (file ? await readVideoDurationSeconds(file) : null);
@@ -120,49 +305,45 @@ export function EntryForm({ prefill }: { prefill: VerifyDogPrefill }) {
     }
 
     setPending(false);
-    setReady(true);
+    setVerifyError(null);
+    setStep("choose_channel");
   }
 
-  if (ready) {
-    return (
-      <div className="rounded-[20px] border border-launch-line bg-white px-6 py-8 text-center lg:px-10">
-        <p className="text-body-large text-launch-navy">{launchCopy.readyMessage}</p>
-      </div>
-    );
-  }
+  const requesting = busy === "requesting";
+  const verifying = busy === "verifying";
 
   return (
     <form className="flex flex-col gap-5" onSubmit={onSubmit}>
       <div className="grid gap-3 lg:grid-cols-2">
         <Field
-          defaultValue={defaults.firstName}
           label="First Name"
           name="firstName"
+          onChange={setFirstName}
+          value={firstName}
         />
         <Field
-          defaultValue={defaults.lastName}
           label="Last Name"
           name="lastName"
+          onChange={setLastName}
+          value={lastName}
         />
         <Field
-          defaultValue={defaults.email}
           label="Email Address"
           name="email"
+          onChange={onEmailChange}
           type="email"
+          value={email}
         />
         <Field
-          defaultValue={defaults.mobile}
           label="Mobile Number"
           name="mobile"
+          onChange={onMobileChange}
           type="tel"
+          value={mobile}
         />
       </div>
 
-      <Field
-        defaultValue={defaults.petName}
-        label="Dog’s Name"
-        name="petName"
-      />
+      <Field label="Dog’s Name" name="petName" onChange={setPetName} value={petName} />
 
       <div className="flex min-w-0 flex-col gap-1.5">
         <label className="text-[13px] font-semibold text-launch-navy" htmlFor="entry-caption">
@@ -173,7 +354,9 @@ export function EntryForm({ prefill }: { prefill: VerifyDogPrefill }) {
           id="entry-caption"
           maxLength={280}
           name="caption"
+          onChange={(event) => setCaption(event.target.value)}
           rows={3}
+          value={caption}
         />
       </div>
 
@@ -214,7 +397,7 @@ export function EntryForm({ prefill }: { prefill: VerifyDogPrefill }) {
                 void assignFile(event.target.files?.[0]);
               }}
               ref={inputRef}
-              required
+              required={step === "form"}
               type="file"
             />
           </label>
@@ -253,14 +436,12 @@ export function EntryForm({ prefill }: { prefill: VerifyDogPrefill }) {
         </aside>
       </div>
 
-      <p className="rounded-[12px] bg-[#EEF2FF] px-4 py-3 text-center text-[14px] leading-5 text-launch-navy lg:text-left">
-        {launchCopy.authNotice}
-      </p>
-
       <label className="flex items-start gap-2.5 text-[14px] leading-5 text-launch-navy">
         <input
+          checked={rulesAgreed}
           className="mt-0.5 h-4 w-4 shrink-0 accent-launch-gold"
           name="rulesAgreed"
+          onChange={(event) => setRulesAgreed(event.target.checked)}
           required
           type="checkbox"
         />
@@ -281,15 +462,121 @@ export function EntryForm({ prefill }: { prefill: VerifyDogPrefill }) {
         </span>
       </label>
 
+      {step === "form" ? (
+        <p className="rounded-[12px] bg-[#EEF2FF] px-4 py-3 text-center text-[14px] leading-5 text-launch-navy lg:text-left">
+          {launchCopy.authNotice}
+        </p>
+      ) : (
+        <div aria-live="polite" className="flex flex-col gap-4">
+          <div>
+            <h3 className="text-center text-[15px] font-extrabold tracking-[0.04em] text-launch-navy uppercase lg:text-left">
+              {step === "verified" ? launchCopy.verifiedHeading : launchCopy.verifyHeading}
+            </h3>
+            <p className="mt-2 text-center text-[14px] leading-5 text-launch-navy lg:text-left">
+              {step === "verified" ? launchCopy.verifiedLede : launchCopy.verifyLede}
+            </p>
+          </div>
+
+          {step === "choose_channel" ? (
+            <div className="grid gap-3 sm:grid-cols-2">
+              <LaunchButton
+                disabled={requesting}
+                fullWidth
+                onClick={() => {
+                  void requestCode("email");
+                }}
+                size="compact"
+                type="button"
+                variant="outline"
+              >
+                {requesting && channel === "email" ? launchCopy.sendingCode : launchCopy.verifyByEmail}
+              </LaunchButton>
+              <LaunchButton
+                disabled={requesting}
+                fullWidth
+                onClick={() => {
+                  void requestCode("sms");
+                }}
+                size="compact"
+                type="button"
+                variant="outline"
+              >
+                {requesting && channel === "sms" ? launchCopy.sendingCode : launchCopy.verifyBySms}
+              </LaunchButton>
+            </div>
+          ) : null}
+
+          {step === "code_sent" ? (
+            <>
+              <p aria-live="polite" className="text-center text-[14px] leading-5 text-launch-navy lg:text-left">
+                {channel === "sms" ? launchCopy.verifySmsSent : launchCopy.verifyEmailSent}
+              </p>
+              <div className="flex min-w-0 flex-col gap-1.5">
+                <label className="text-[13px] font-semibold text-launch-navy" htmlFor="entry-verification-code">
+                  {launchCopy.verifyCodeLabel}
+                </label>
+                <input
+                  autoComplete="one-time-code"
+                  className="h-11 rounded-[10px] border border-launch-line bg-white px-3 text-[15px] text-launch-navy"
+                  id="entry-verification-code"
+                  inputMode="numeric"
+                  maxLength={6}
+                  onChange={(event) => setCode(event.target.value.replace(/\D/g, "").slice(0, 6))}
+                  pattern="\d{6}"
+                  required
+                  type="text"
+                  value={code}
+                />
+              </div>
+              <LaunchButton disabled={verifying || code.length !== 6} fullWidth size="compact" type="submit">
+                {verifying ? launchCopy.verifying : launchCopy.verifyCode}
+              </LaunchButton>
+              <div className="flex flex-col items-center gap-2 lg:items-start">
+                <button
+                  className="text-[14px] font-bold text-launch-navy underline disabled:opacity-60"
+                  disabled={requesting || verifying}
+                  onClick={() => {
+                    if (channel) {
+                      void requestCode(channel);
+                    }
+                  }}
+                  type="button"
+                >
+                  {requesting ? launchCopy.sendingCode : launchCopy.resendCode}
+                </button>
+                <button
+                  className="text-[14px] font-bold text-launch-navy underline disabled:opacity-60"
+                  disabled={requesting || verifying}
+                  onClick={() => {
+                    clearVerificationProgress();
+                    setStep("choose_channel");
+                  }}
+                  type="button"
+                >
+                  {launchCopy.changeMethod}
+                </button>
+              </div>
+            </>
+          ) : null}
+        </div>
+      )}
+
       {error ? (
         <p className="text-[13px] text-error" role="alert">
           {error}
         </p>
       ) : null}
+      {verifyError ? (
+        <p className="text-[13px] text-error" role="alert">
+          {verifyError}
+        </p>
+      ) : null}
 
-      <LaunchButton disabled={pending} fullWidth size="compact" type="submit">
-        {launchCopy.submit}
-      </LaunchButton>
+      {step === "form" ? (
+        <LaunchButton disabled={pending} fullWidth size="compact" type="submit">
+          {launchCopy.submit}
+        </LaunchButton>
+      ) : null}
       <p className="pb-space-32 text-center text-[12px] text-launch-muted">{launchCopy.formNote}</p>
     </form>
   );

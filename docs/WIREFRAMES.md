@@ -327,7 +327,7 @@ VERIFY EMAIL OR MOBILE
 
 You will verify your email address or mobile number before your entry is accepted.
 
-Phase 02 shows this notice only. Phase 03 implements Resend and Twilio.
+Phase 02 shows this notice only. Phase 03 implements SendNow through the existing SMTP infrastructure and Twilio. Email verification codes will be delivered through the existing SendNow SMTP configuration.
 
 A Verify.Dog customer account is not required.
 ```

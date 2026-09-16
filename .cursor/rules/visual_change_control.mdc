@@ -1,0 +1,31 @@
+---
+description: Product-owner visual control. No unapproved colors, layout, or design changes. Backend work must not alter presentation.
+alwaysApply: true
+---
+
+# Doggywood visual change control
+
+Visual design is product-owner controlled.
+
+Do not change a visual element unless the current instruction explicitly names it, or the change is absolutely required to make requested functionality work.
+
+## Frozen
+
+Never modify without explicit product-owner instruction: header, desktop hero, mobile hero, trust strip, logos, and brand assets.
+
+## Approved section backgrounds
+
+Below the trust strip, alternate only:
+
+- `#FFFFFF`
+- `#FFF9E2`
+
+Sequence: About `#FFFFFF` → How It Works `#FFF9E2` → How Voting Works `#FFFFFF` → Enter `#FFF9E2` → Contest Rules `#FFFFFF` → FAQ `#FFF9E2` → Final CTA `#FFFFFF` → Footer `#FFFFFF`.
+
+Do not introduce new background colors. Gold is an accent (buttons, icons, small labels), not an unapproved full-width section background.
+
+## Scope
+
+Backend, auth, email, SMS, database, sessions, APIs, and security work must not modify styling, colors, typography, layout, imagery, or responsive behavior.
+
+Do not treat “clean it up”, “make it better”, “implement the feature”, or “refactor” as permission to redesign.

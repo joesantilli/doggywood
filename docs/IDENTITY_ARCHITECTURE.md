@@ -6,7 +6,7 @@ Verify.Dog is the sponsor and the intended future master identity system for Dog
 
 Doggywood is not a permanently isolated authentication product. It also is not a section inside Verify.Dog.
 
-This document is the source of truth for identity ownership. Phase 01 implements the data model and mapping abstraction only. Phase 02 does not implement authentication. Phase 03 implements email verification using Resend and SMS verification using Twilio. Do not implement Verify.Dog single sign-on, OAuth, OpenID Connect, or a production Verify.Dog connection until a later approved phase.
+This document is the source of truth for identity ownership. Phase 01 implements the data model and mapping abstraction only. Phase 02 does not implement authentication. Phase 03 implements email verification using SendNow through the existing SMTP infrastructure and SMS verification using Twilio. Email verification codes will be delivered through the existing SendNow SMTP configuration. Do not implement Verify.Dog single sign-on, OAuth, OpenID Connect, or a production Verify.Dog connection until a later approved phase.
 
 ## Public contest eligibility
 

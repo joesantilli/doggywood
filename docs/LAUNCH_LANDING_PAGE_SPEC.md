@@ -273,7 +273,9 @@ Authentication notice:
 
 You will verify your email address or mobile number before your entry is accepted.
 
-Do not implement Resend, Twilio, verification codes, or sessions in Phase 02.
+Do not implement email verification, Twilio, verification codes, or sessions in Phase 02.
+
+Email verification codes will be delivered through the existing SendNow SMTP configuration. SMS verification will use Twilio.
 
 ### 5.10 Contest rules
 

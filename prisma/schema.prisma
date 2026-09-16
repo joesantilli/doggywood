@@ -68,7 +68,14 @@ enum NotificationStatus {
 
 enum IdentityProvider {
   LOCAL
+  EMAIL
+  PHONE
   VERIFY_DOG
+}
+
+enum VerificationChannel {
+  EMAIL
+  SMS
 }
 
 // Application profile and cached contact information.
@@ -330,4 +337,26 @@ model ContactInquiry {
 
   @@index([createdAt])
   @@index([email])
+}
+
+model VerificationChallenge {
+  id            String              @id @default(cuid())
+  channel       VerificationChannel
+  destination   String
+  codeHash      String?
+  twilioSid     String?
+  expiresAt     DateTime
+  attemptCount  Int                 @default(0)
+  requestCount  Int                 @default(1)
+  consumedAt    DateTime?
+  invalidatedAt DateTime?
+  createdAt     DateTime            @default(now())
+  updatedAt     DateTime            @updatedAt
+  ipAddress     String?
+  userAgent     String?
+
+  @@index([channel, destination])
+  @@index([channel, destination, createdAt])
+  @@index([expiresAt])
+  @@index([ipAddress, createdAt])
 }

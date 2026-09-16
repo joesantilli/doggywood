@@ -7,6 +7,7 @@
 import type { ReactNode } from "react";
 import { ContestIcon, type ContestIconName } from "@/components/ui/ContestIcon";
 import { LaunchButton } from "@/components/ui/LaunchButton";
+import styles from "@/features/contest-landing/FirstRunContestLanding.module.css";
 import { EntryForm } from "@/features/homepage/EntryForm";
 import { contestPeriod, launchCopy } from "@/features/homepage/launchCopy";
 import type { VerifyDogPrefill } from "@/lib/validation/entry";
@@ -61,7 +62,8 @@ function FaqList() {
 
 export function FirstRunContestLanding({ prefill }: { prefill: VerifyDogPrefill }) {
   return (
-    <>
+    <div id="contest-landing-page">
+      <div className={styles.hero}>
       <section className="dw-hero">
         {/* DOGGYWOOD APPROVED HERO. DO NOT MODIFY WITHOUT EXPLICIT PRODUCT OWNER INSTRUCTION. */}
         <div className="dw-hero-desktop">
@@ -142,6 +144,7 @@ export function FirstRunContestLanding({ prefill }: { prefill: VerifyDogPrefill 
           </div>
         </div>
       </section>
+      </div>
 
       {/* Frozen with the approved hero. Do not modify without explicit product owner instruction. */}
       <section className="border-y border-[#e6e2d8] bg-[#F4F0E6]">
@@ -195,8 +198,10 @@ export function FirstRunContestLanding({ prefill }: { prefill: VerifyDogPrefill 
 
       <section className="dw-how" id="how-it-works">
         <BelowHero>
-          <p className="dw-eyebrow dw-how-eyebrow">{launchCopy.howEyebrow}</p>
-          <h2 className="dw-section-title dw-section-title-how">{launchCopy.howHeading}</h2>
+          <div className="dw-how-intro">
+            <p className="dw-eyebrow dw-how-eyebrow">{launchCopy.howEyebrow}</p>
+            <h2 className="dw-section-title dw-section-title-how">{launchCopy.howHeading}</h2>
+          </div>
           <ol className="dw-how-cards">
             {launchCopy.stages.map((stage) => (
               <li className="dw-how-card" key={stage.title}>
@@ -306,6 +311,6 @@ export function FirstRunContestLanding({ prefill }: { prefill: VerifyDogPrefill 
           </a>
         </BelowHero>
       </section>
-    </>
+    </div>
   );
 }

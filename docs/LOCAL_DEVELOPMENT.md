@@ -79,18 +79,21 @@ Required:
 - `SESSION_SECRET`
 - `SESSION_COOKIE_NAME`
 
-Contact form messages are emailed to `joseph.santilli@petplatforms.com` using the same Resend setup as serviceanimallaw.com:
-
-1. HTTPS API at `https://api.resend.com` first, with the API key in `SMTP_PASS` (starts with `re_`). This is preferred because HostGator often blocks outbound SMTP.
-2. SMTP fallback to `smtp.resend.com:465` with username `resend` and that same API key as the password.
+Contact form messages are emailed to `joseph.santilli@petplatforms.com` through SendNow using the existing SMTP configuration.
 
 Also set:
 
 - `CONTACT_TO_EMAIL`
-- `SMTP_FROM` (must be a domain verified in Resend)
-- `SMTP_PASS` (Resend API key)
+- `SMTP_HOST`
+- `SMTP_PORT`
+- `SMTP_USER`
+- `SMTP_PASS`
+- `SMTP_FROM`
+- `SMTP_SECURE`
 
 Never commit `SESSION_SECRET` or `SMTP_PASS`.
+
+Email verification codes will be delivered through the existing SendNow SMTP configuration. Do not introduce a second email delivery provider.
 
 ## Checks
 

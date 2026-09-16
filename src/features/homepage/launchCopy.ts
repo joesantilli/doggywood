@@ -126,6 +126,21 @@ export const launchCopy = {
   ],
   authNotice:
     "You will verify your email address or mobile number before your entry is accepted.",
+  verifyHeading: "Verify Your Identity",
+  verifyLede: "Verify your email address or mobile number to continue your Doggywood entry.",
+  verifyByEmail: "Verify by Email",
+  verifyBySms: "Verify by Text Message",
+  verifyCodeLabel: "Verification Code",
+  verifyEmailSent: "We sent a verification code to your email.",
+  verifySmsSent: "We sent a verification code to your mobile number.",
+  verifiedHeading: "Identity Verified",
+  verifiedLede:
+    "Your identity is verified. Your contest entry is ready for the next submission step.",
+  resendCode: "Send another code",
+  changeMethod: "Use a different verification method",
+  sendingCode: "Sending Code…",
+  verifying: "Verifying…",
+  verifyCode: "Verify Code",
   readyMessage:
     "Your entry details are ready. Identity verification will be added in the next phase.",
   formNote: "One entry per dog during each monthly contest.",

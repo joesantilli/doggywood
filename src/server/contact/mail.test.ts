@@ -1,13 +1,14 @@
-import { describe, expect, it, vi } from "vitest";
-import {
-  CONTACT_TO_EMAIL,
-  RESEND_API_URL,
-  buildContactEmail,
-  getContactMailConfig,
-  getResendApiKey,
-  sendContactInquiry,
-  sendViaResendApi,
-} from "@/server/contact/mail";
+import { beforeEach, describe, expect, it, vi } from "vitest";
+
+const { sendSmtpMail } = vi.hoisted(() => ({
+  sendSmtpMail: vi.fn(async () => undefined),
+}));
+
+vi.mock("@/server/mail/smtp", () => ({
+  sendSmtpMail,
+}));
+
+import { CONTACT_TO_EMAIL, buildContactEmail, sendContactInquiry } from "@/server/contact/mail";
 
 const sample = {
   name: "Ada Lovelace",
@@ -17,7 +18,20 @@ const sample = {
   message: "How do I enter?",
 };
 
+const smtpEnv = {
+  SMTP_HOST: "smtp.sendnow.example",
+  SMTP_PORT: "465",
+  SMTP_USER: "your-sendnow-smtp-username",
+  SMTP_PASS: "secret-pass",
+  SMTP_FROM: "Doggywood <noreply@doggywood.com>",
+  SMTP_SECURE: "ssl",
+};
+
 describe("contact mail", () => {
+  beforeEach(() => {
+    sendSmtpMail.mockClear();
+  });
+
   it("forwards to joseph.santilli@petplatforms.com", () => {
     expect(CONTACT_TO_EMAIL).toBe("joseph.santilli@petplatforms.com");
     const message = buildContactEmail(sample);
@@ -25,6 +39,7 @@ describe("contact mail", () => {
     expect(message.replyTo).toBe("ada@example.com");
     expect(message.subject).toBe("[Doggywood Contact] Contest question");
     expect(message.text).toContain("How do I enter?");
+    expect(message.text).toContain("Ada Lovelace");
   });
 
   it("strips line breaks from the subject and escapes HTML", () => {
@@ -39,65 +54,31 @@ describe("contact mail", () => {
     expect(message.html).toContain("Line 1<br />Line 2");
   });
 
-  it("treats SMTP_PASS as the Resend API key when it starts with re_", () => {
-    expect(getResendApiKey({})).toBe("");
-    expect(getResendApiKey({ SMTP_PASS: "not-a-resend-key" })).toBe("");
-    expect(getResendApiKey({ SMTP_PASS: "re_test_key" })).toBe("re_test_key");
-    expect(getResendApiKey({ RESEND_API_KEY: "re_explicit", SMTP_PASS: "re_other" })).toBe(
-      "re_explicit",
+  it("sends contact mail through SMTP", async () => {
+    await expect(sendContactInquiry(sample, smtpEnv)).resolves.toBe("smtp");
+
+    expect(sendSmtpMail).toHaveBeenCalledWith(
+      {
+        to: CONTACT_TO_EMAIL,
+        from: "Doggywood <noreply@doggywood.com>",
+        subject: "[Doggywood Contact] Contest question",
+        text: [
+          "Name: Ada Lovelace",
+          "Phone: 5551234567",
+          "Email: ada@example.com",
+          "Subject: Contest question",
+          "",
+          "How do I enter?",
+        ].join("\n"),
+        html: buildContactEmail(sample).html,
+        replyTo: "ada@example.com",
+      },
+      smtpEnv,
     );
   });
 
-  it("defaults SMTP fallback to smtp.resend.com:465", () => {
-    expect(getContactMailConfig({})).toBeNull();
-    expect(
-      getContactMailConfig({
-        SMTP_PASS: "re_test_key",
-        SMTP_FROM: "Doggywood <noreply@doggywood.com>",
-      }),
-    ).toMatchObject({
-      host: "smtp.resend.com",
-      port: 465,
-      user: "resend",
-      pass: "re_test_key",
-      to: CONTACT_TO_EMAIL,
-      secure: true,
-    });
-  });
-
-  it("sends through the Resend HTTPS API first", async () => {
-    const fetchImpl = vi.fn(async (url: string, init?: RequestInit) => {
-      expect(url).toBe(RESEND_API_URL);
-      expect(init?.headers).toMatchObject({
-        Authorization: "Bearer re_test_key",
-      });
-      const body = JSON.parse(String(init?.body));
-      expect(body.to).toEqual([CONTACT_TO_EMAIL]);
-      expect(body.reply_to).toBe("ada@example.com");
-      expect(body.from).toBe("Doggywood <noreply@doggywood.com>");
-      return new Response("{}", { status: 200 });
-    }) as unknown as typeof fetch;
-
-    await expect(
-      sendViaResendApi(
-        sample,
-        {
-          SMTP_PASS: "re_test_key",
-          SMTP_FROM: "Doggywood <noreply@doggywood.com>",
-        },
-        fetchImpl,
-      ),
-    ).resolves.toBeUndefined();
-
-    await expect(
-      sendContactInquiry(
-        sample,
-        {
-          SMTP_PASS: "re_test_key",
-          SMTP_FROM: "Doggywood <noreply@doggywood.com>",
-        },
-        fetchImpl,
-      ),
-    ).resolves.toBe("resend");
+  it("throws when SMTP is not configured", async () => {
+    await expect(sendContactInquiry(sample, {})).rejects.toThrow("Contact mail is not configured");
+    expect(sendSmtpMail).not.toHaveBeenCalled();
   });
 });

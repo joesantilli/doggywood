@@ -36,7 +36,7 @@ A public voter does not need to be a Verify.Dog customer.
 
 Authentication:
 
-Phase 02 displays a notice only. Phase 03 implements email verification using Resend and SMS verification using Twilio. Verify.Dog remains the intended future master identity system.
+Phase 02 displays a notice only. Phase 03 implements email verification using SendNow through the existing SMTP infrastructure and SMS verification using Twilio. Email verification codes will be delivered through the existing SendNow SMTP configuration. Verify.Dog remains the intended future master identity system.
 
 Entry:
 
